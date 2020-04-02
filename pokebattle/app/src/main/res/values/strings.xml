@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PokeBattle</string>
+    <string name="splash_activity_welcome">Welcome Trainer! You have a team of three pokemons and you will fight 3 wild pokemons in a row. But before the battle starts, you only know you first opponent. And remember, most Pokemons have strengths and weaknesses.\nGood luck!</string>
+    <string name="splash_activity_madeby">An application made by:</string>
+    <string name="splash_activity_authors">Thomas Curti\nJérémie Piro\nClément Dedenis\nVincent Masson</string>
+    <string name="splash_activity_battle">BATTLE</string>
+    <string name="splash_activity_pokedex">POKEDEX</string>
+    <string name="splash_activity_madeat">Made at</string>
+</resources>
