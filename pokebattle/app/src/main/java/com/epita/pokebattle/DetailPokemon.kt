@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.epita.pokebattle.methods.DownloadImageTask
 import com.epita.pokebattle.methods.getBaseStat
+import com.epita.pokebattle.methods.getImageFromType
 import com.epita.pokebattle.model.Pokemon
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.fragment_detail_pokemon.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -81,15 +83,25 @@ class DetailPokemon : Fragment() {
 
                 Log.e("TAG", responseData.sprites.front_default)
 
+
+                //can't use Glide so..
                 DownloadImageTask(activity!!.findViewById(R.id.detail_pokemon_fragment_img))
                     .execute(responseData.sprites.front_default);
 
-                /*var bmp: Bitmap
-                thread(start = true) {
-                    val url = URL(responseData.sprites.front_default);
-                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                }.join()
-                detail_pokemon_fragment_img.setImageBitmap(bmp);*/
+                detail_pokemon_fragment_name_txt.text = responseData.name
+                detail_pokemon_fragment_height_txt.text = responseData.height.toString()
+                detail_pokemon_fragment_speed_txt.text = getBaseStat(responseData, "speed").toString()
+                detail_pokemon_fragment_attack_txt.text = getBaseStat(responseData, "attack").toString()
+                detail_pokemon_fragment_special_attack_txt.text = getBaseStat(responseData, "special-attack").toString()
+                detail_pokemon_fragment_defense_txt.text = getBaseStat(responseData, "defense").toString()
+                detail_pokemon_fragment_special_defense_txt.text = getBaseStat(responseData, "special-defense").toString()
+                detail_pokemon_fragment_weight_txt.text = responseData.weight.toString()
+                detail_pokemon_fragment_hp_txt.text = getBaseStat(responseData, "hp").toString()
+
+                if(responseData.types.isNotEmpty())
+                    detail_pokemon_fragment_first_type_img.setImageResource(getImageFromType(responseData.types[0].type.name))
+                if (responseData.types.size > 1)
+                    detail_pokemon_fragment_second_type_img.setImageResource(getImageFromType(responseData.types[1].type.name))
 
             }
             else

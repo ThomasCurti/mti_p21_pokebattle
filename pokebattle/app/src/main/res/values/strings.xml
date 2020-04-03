@@ -6,7 +6,18 @@
     <string name="splash_fragment_battle">BATTLE</string>
     <string name="splash_fragment_pokedex">POKEDEX</string>
     <string name="splash_fragment_madeat">Made at</string>
+
     <string name="pokedex_fragment_list_item_name">null</string>
     <string name="pokedex_fragment_title">PokeDex</string>
     <string name="pokedex_fragment_error">No data found</string>
+
+    <string name="pokedex_detail_fragment_height">Height:</string>
+    <string name="pokedex_detail_fragment_speed">Speed:</string>
+    <string name="pokedex_detail_fragment_attack">Attack:</string>
+    <string name="pokedex_detail_fragment_special_attack">Special Attack:</string>
+    <string name="pokedex_detail_fragment_weight">Weight:</string>
+    <string name="pokedex_detail_fragment_hp">HP:</string>
+    <string name="pokedex_detail_fragment_defense">Defense</string>
+    <string name="pokedex_detail_fragment_special_defense">Special Defense</string>
+    <string name="pokedex_detail_fragment_types">Types:</string>
 </resources>
