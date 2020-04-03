@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
 class SplashScreen : Fragment() {
 
@@ -13,18 +14,22 @@ class SplashScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.activity_splash_screen, container,false)
-        return rootView
+        return inflater.inflate(R.layout.fragment_splash_screen, container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Do stuff
+        splash_fragment_pokedex_btn.setOnClickListener {
+            (activity as SplashScreenInteractions).moveToPokedex()
+        }
+
+
     }
 
-    interface SplashScreenInteractions {
 
+    interface SplashScreenInteractions {
+        fun moveToPokedex()
     }
 
 }
