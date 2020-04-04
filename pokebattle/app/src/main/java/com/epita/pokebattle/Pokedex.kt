@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.epita.pokebattle.methods.AllPokemons
+import com.epita.pokebattle.methods.getImageFromType
 import com.epita.pokebattle.model.PokemonListItem
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_pokedex.*
@@ -19,7 +20,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-class Pokedex : Fragment() {
+class Pokedex : Fragment(), HasList {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,16 +35,21 @@ class Pokedex : Fragment() {
 
         pokedex_fragment_error_txt.isVisible = false
 
-        if (AllPokemons.data.isNotEmpty())
-        {
-            val onItemClickListener = View.OnClickListener { clickedRow ->
-                val pokemon = clickedRow.tag as PokemonListItem
-                (activity as PokedexInteractions).onListItemClicked(pokemon)
-            }
+        if (AllPokemons.data.isNotEmpty()) {
+            val onItemClickListener = clickedListener
 
             pokedex_fragment_list.setHasFixedSize(true)
             pokedex_fragment_list.layoutManager = LinearLayoutManager(activity)
-            pokedex_fragment_list.adapter = PokedexAdapter(AllPokemons.data, activity!!, onItemClickListener)
+            pokedex_fragment_list.adapter = Adapter(
+                AllPokemons.data,
+                activity!!,
+                onItemClickListener,
+                R.layout.pokedex_list_item,
+                ::binder,
+                R.id.pokedex_list_item_name_txt,
+                R.id.pokedex_list_item_first_attr_img,
+                R.id.pokedex_list_item_sec_attr_img
+            )
         }
         else
         {
@@ -60,7 +66,6 @@ class Pokedex : Fragment() {
 
     }
 
-
     val wsCallback: Callback<List<PokemonListItem>> = object : Callback<List<PokemonListItem>> {
 
         override fun onFailure(call: Call<List<PokemonListItem>>, t: Throwable) {
@@ -76,9 +81,7 @@ class Pokedex : Fragment() {
                 val responseData = response.body()
                 if (responseData != null) {
                     Log.d("WS", "WebService success : " + responseData.size + " items found")
-                }
-                else
-                {
+                } else {
                     //TODO Toast Check Internet connectivity blabla
                     Log.w("WS", "WebService success : but no item found")
                     pokedex_fragment_error_txt.isVisible = true
@@ -89,14 +92,20 @@ class Pokedex : Fragment() {
                 AllPokemons.data = data
 
 
-                val onItemClickListener = View.OnClickListener { clickedRow ->
-                    val pokemon = clickedRow.tag as PokemonListItem
-                    (activity as PokedexInteractions).onListItemClicked(pokemon)
-                }
+                val onItemClickListener = clickedListener
 
                 pokedex_fragment_list.setHasFixedSize(true)
                 pokedex_fragment_list.layoutManager = LinearLayoutManager(activity)
-                pokedex_fragment_list.adapter = PokedexAdapter(data, activity!!, onItemClickListener)
+                pokedex_fragment_list.adapter = Adapter(
+                    data,
+                    activity!!,
+                    onItemClickListener,
+                    R.layout.pokedex_list_item,
+                    ::binder,
+                    R.id.pokedex_list_item_name_txt,
+                    R.id.pokedex_list_item_first_attr_img,
+                    R.id.pokedex_list_item_sec_attr_img
+                )
             }
             else
             {
@@ -109,13 +118,37 @@ class Pokedex : Fragment() {
         }
     }
 
+    val clickedListener : View.OnClickListener = View.OnClickListener{ clickedRow ->
+        Log.e("TAG", "TEST")
+        val pokemon = clickedRow.tag as PokemonListItem
+        (activity as PokedexInteractions).onListPokedexItemClicked(pokemon)
+    }
+
+    override fun binder(holder: Adapter.ViewHolder, position: Int, data : List<PokemonListItem>)
+    {
+        holder.itemView.tag = data[position]
+
+        holder.name.text =  data[position].name.capitalize()
+
+        if(data[position].types.isNotEmpty())
+            holder.firstAttribute.setImageResource(getImageFromType(data[position].types[0].name))
+
+        //TODO delete this one
+        if (data[position].name == "accelgor")
+            Log.d("ACCELEGOR", "" + data[position].types.size)
+
+        if (data[position].types.size > 1)
+            holder.secondAttribute.setImageResource(getImageFromType(data[position].types[1].name))
+    }
+
+
     interface WSInterface {
         @GET("pokemons.json")
         fun listPokemons(): Call<List<PokemonListItem>>
     }
 
     interface PokedexInteractions {
-        fun onListItemClicked(pokemonListItem: PokemonListItem)
+        fun onListPokedexItemClicked(pokemonListItem: PokemonListItem)
     }
 
 }

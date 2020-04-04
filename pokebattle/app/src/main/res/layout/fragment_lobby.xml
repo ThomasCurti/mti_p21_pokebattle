@@ -16,8 +16,9 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="1sp"
+        android:layout_width="2dp"
         android:layout_height="175sp"
+        android:background="@color/separator_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/lobby_fragment_select_second_btn" />
@@ -35,7 +36,7 @@
         android:layout_width="110sp"
         android:layout_height="110sp"
         android:layout_marginBottom="4dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:background="@color/background_lobby_select"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_select_third_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
@@ -55,7 +56,7 @@
         android:layout_width="110sp"
         android:layout_height="110sp"
         android:layout_marginBottom="4dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:background="@color/background_lobby_select"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_select_second_txt"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
@@ -71,7 +72,7 @@
         app:layout_constraintStart_toStartOf="@+id/lobby_fragment_select_second_img" />
 
     <ImageView
-        android:id="@+id/lobby_fragment_pokemon_img"
+        android:id="@+id/lobby_fragment_opponent_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
@@ -89,24 +90,26 @@
 
     <ImageView
         android:id="@+id/lobby_fragment_opponent_first_attribute_img"
-        android:layout_width="55sp"
-        android:layout_height="55sp"
+        android:layout_width="45sp"
+        android:layout_height="45sp"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/lobby_fragment_pokemon_img"
-        app:layout_constraintTop_toTopOf="@+id/lobby_fragment_pokemon_img" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/lobby_fragment_opponent_img"
+        app:layout_constraintTop_toTopOf="@+id/lobby_fragment_opponent_img" />
 
     <ImageView
         android:id="@+id/lobby_fragment_opponent_second_attribute_img"
-        android:layout_width="55sp"
-        android:layout_height="55sp"
+        android:layout_width="45sp"
+        android:layout_height="45sp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/lobby_fragment_opponent_name_txt"
-        app:layout_constraintStart_toEndOf="@+id/lobby_fragment_pokemon_img" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/lobby_fragment_opponent_img"
+        app:layout_constraintTop_toBottomOf="@+id/lobby_fragment_opponent_first_attribute_img" />
 
     <ImageView
         android:id="@+id/lobby_fragment_current_select_first_attribute_img"
-        android:layout_width="55sp"
-        android:layout_height="55sp"
+        android:layout_width="45sp"
+        android:layout_height="45sp"
         app:layout_constraintBottom_toBottomOf="@+id/lobby_fragment_current_select_name_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,8 +117,8 @@
 
     <ImageView
         android:id="@+id/lobby_fragment_current_select_second_attribute_img"
-        android:layout_width="55sp"
-        android:layout_height="55sp"
+        android:layout_width="45sp"
+        android:layout_height="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lobby_fragment_current_select_first_attribute_img"
         app:layout_constraintTop_toTopOf="@+id/lobby_fragment_current_select_first_attribute_img" />
@@ -125,9 +128,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/lobby_fragment_pokemon_img"
-        app:layout_constraintStart_toStartOf="@+id/lobby_fragment_pokemon_img"
-        app:layout_constraintTop_toBottomOf="@+id/lobby_fragment_pokemon_img" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/lobby_fragment_opponent_img"
+        app:layout_constraintStart_toStartOf="@+id/lobby_fragment_opponent_img"
+        app:layout_constraintTop_toBottomOf="@+id/lobby_fragment_opponent_img" />
 
     <TextView
         android:id="@+id/textView13"
@@ -143,7 +147,7 @@
         android:layout_width="110sp"
         android:layout_height="110sp"
         android:layout_marginBottom="4dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:background="@color/background_lobby_select"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_select_first_txt"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -160,8 +164,9 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="1sp"
+        android:layout_width="2dp"
         android:layout_height="175sp"
+        android:background="@color/separator_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/lobby_fragment_select_first_btn" />
@@ -186,7 +191,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobby_fragment_list"
         android:layout_width="409dp"
-        android:layout_height="266dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_current_select_first_attribute_img"
@@ -207,4 +212,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.67" />
+
+    <Button
+        android:id="@+id/lobby_fragment_fight_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="80sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/lobby_fragment_fight"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lobby_fragment_error_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pokedex_fragment_error"
+        app:layout_constraintBottom_toBottomOf="@+id/lobby_fragment_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lobby_fragment_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

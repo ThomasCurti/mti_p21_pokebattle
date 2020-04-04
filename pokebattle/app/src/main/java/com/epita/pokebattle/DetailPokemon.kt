@@ -36,8 +36,6 @@ class DetailPokemon : Fragment() {
         val id = arguments!!["id"]
         val name = arguments!!["name"].toString()
 
-        Log.w("TAG", "$id $name")
-
         val baseURL = "https://pokeapi.co/api/v2/"
         val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
         val retrofit = Retrofit.Builder()

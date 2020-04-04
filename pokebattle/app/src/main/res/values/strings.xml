@@ -27,6 +27,12 @@
     <string name="lobby_fragment_second">2</string>
     <string name="lobby_fragment_third">3</string>
     <string name="lobby_fragment_question_mark">\?</string>
+    <string name="lobby_fragment_fight">Fight !</string>
 
+    <string name="typehelper_double">x2</string>
+    <string name="typehelper_half">x0.5</string>
+    <string name="typehelper_normal">x0</string>
+    <string name="typehelper_from">From</string>
+    <string name="typehelper_to">To</string>
 
 </resources>

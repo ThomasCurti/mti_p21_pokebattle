@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="black">#000000</color>
     <color name="splash_title_red">#cc1100</color>
+    <color name="separator_color">#777777</color>
+    <color name="background_lobby_select">#FDFDB1</color>
 </resources>
