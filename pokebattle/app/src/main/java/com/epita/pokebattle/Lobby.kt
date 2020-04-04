@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import kotlin.random.Random
+import kotlin.reflect.jvm.internal.impl.descriptors.deserialization.PlatformDependentDeclarationFilter
 
 class Lobby : Fragment(), HasList {
     override fun onCreateView(
@@ -51,7 +53,7 @@ class Lobby : Fragment(), HasList {
                 if (nbSelected >= 3)
                     lobby_fragment_fight_btn.visibility = View.VISIBLE
             } else {
-                //TODO Toast You forgot to choose a pokemon
+                Toast.makeText(context, "You forgot to choose a Pokemon", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -65,7 +67,7 @@ class Lobby : Fragment(), HasList {
                 if (nbSelected >= 3)
                     lobby_fragment_fight_btn.visibility = View.VISIBLE
             } else {
-                //TODO Toast You forgot to choose a pokemon
+                Toast.makeText(context, "You forgot to choose a Pokemon", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -80,7 +82,7 @@ class Lobby : Fragment(), HasList {
                     lobby_fragment_fight_btn.visibility = View.VISIBLE
 
             } else {
-                //TODO Toast You forgot to choose a pokemon
+                Toast.makeText(context, "You forgot to choose a Pokemon", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -99,14 +101,16 @@ class Lobby : Fragment(), HasList {
             }
         }
 
-
         if (AllPokemons.data.isNotEmpty()) {
             val onItemClickListener = itemClickedListener
+
+            var data = AllPokemons.data
+            data = data.sortedWith(compareBy<PokemonListItem>({ x -> x.types[0].name }, { x -> if (x.types.size > 1) x.types[1].name else ""}))
 
             lobby_fragment_list.setHasFixedSize(true)
             lobby_fragment_list.layoutManager = LinearLayoutManager(activity)
             lobby_fragment_list.adapter = Adapter(
-                AllPokemons.data,
+                data,
                 activity!!,
                 onItemClickListener,
                 R.layout.lobby_list_item,
@@ -116,7 +120,7 @@ class Lobby : Fragment(), HasList {
                 R.id.lobby_list_item_sec_attr_img
             )
 
-            setOpponent(AllPokemons.data)
+            setOpponent(data)
         }
         else
         {
@@ -134,7 +138,7 @@ class Lobby : Fragment(), HasList {
     val wsCallback: Callback<List<PokemonListItem>> = object : Callback<List<PokemonListItem>> {
 
         override fun onFailure(call: Call<List<PokemonListItem>>, t: Throwable) {
-            //TODO Toast Check Internet connectivity blabla
+            Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
             Log.e("WS", "WebService call failed " + t.message)
             lobby_fragment_error_txt.isVisible = true
             lobby_fragment_list.isVisible = false
@@ -148,15 +152,16 @@ class Lobby : Fragment(), HasList {
                 if (responseData != null) {
                     Log.d("WS", "WebService success : " + responseData.size + " items found")
                 } else {
-                    //TODO Toast Check Internet connectivity blabla
+                    Toast.makeText(context, "No item found, check your internet connection", Toast.LENGTH_LONG).show()
                     Log.w("WS", "WebService success : but no item found")
                     lobby_fragment_error_txt.isVisible = true
                     lobby_fragment_list.isVisible = false
                     return
                 }
-                val data = responseData.sortedBy { x -> x.name }
+                var data = responseData.sortedBy { x -> x.name }
                 AllPokemons.data = data
 
+                data = data.sortedWith(compareBy<PokemonListItem>({ x -> x.types[0].name }, { x -> if (x.types.size > 1) x.types[1].name else ""}))
 
                 val onItemClickListener = itemClickedListener
 
@@ -177,7 +182,7 @@ class Lobby : Fragment(), HasList {
             }
             else
             {
-                //TODO Toast Check Internet connectivity blabla
+                Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
                 Log.w("WS", "WebService failed")
                 lobby_fragment_error_txt.isVisible = true
                 lobby_fragment_list.isVisible = false
@@ -202,7 +207,7 @@ class Lobby : Fragment(), HasList {
         {
             name = name.substring(0, 6) + ".."
         }
-        //TODO setOnClickListener les types
+
         lobby_fragment_opponent_name_txt.text = name
         DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_opponent_img))
             .execute(opponentPokemon.sprite);

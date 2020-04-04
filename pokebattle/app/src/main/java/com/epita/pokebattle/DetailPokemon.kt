@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.epita.pokebattle.methods.DownloadImageTask
 import com.epita.pokebattle.methods.getBaseStat
@@ -48,7 +49,7 @@ class DetailPokemon : Fragment() {
 
     val wsCallbackGetPokemon: Callback<Pokemon> = object : Callback<Pokemon> {
         override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-            //TODO Toast Check Internet connectivity blabla
+            Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
             Log.e("WS", "WebService call failed " + t.message)
         }
 
@@ -61,7 +62,7 @@ class DetailPokemon : Fragment() {
                     Log.d("WS", "WebService success : $responseData items found")
                 }
                 else {
-                    //TODO Toast Check Internet connectivity blabla
+                    Toast.makeText(context, "No item found, check your internet connection", Toast.LENGTH_LONG).show()
                     Log.w("WS", "WebService success : but no item found")
                     return
                 }
@@ -87,7 +88,7 @@ class DetailPokemon : Fragment() {
             }
             else
             {
-                //TODO Toast Check Internet connectivity blabla
+                Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
                 Log.w("WS", "WebService failed")
             }
 

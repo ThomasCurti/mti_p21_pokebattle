@@ -1,9 +1,10 @@
 package com.epita.pokebattle
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.epita.pokebattle.model.PokemonListItem
 import com.epita.pokebattle.model.TypeItem
+
 
 class MainActivity : AppCompatActivity(),
                      SplashScreen.SplashScreenInteractions,
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity(),
 
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.activity_main, typeHelper)
+            .add(R.id.activity_main, typeHelper)
             .commit()
     }
 

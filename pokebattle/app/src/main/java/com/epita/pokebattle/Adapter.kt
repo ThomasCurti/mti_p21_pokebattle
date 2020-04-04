@@ -1,7 +1,6 @@
 package com.epita.pokebattle
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,10 @@ class Adapter(
         val name : TextView = itemView.findViewById(name)
         val firstAttribute : ImageView = itemView.findViewById(firstAttr)
         val secondAttribute : ImageView = itemView.findViewById(secAttr)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

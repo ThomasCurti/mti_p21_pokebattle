@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,7 +70,7 @@ class Pokedex : Fragment(), HasList {
     val wsCallback: Callback<List<PokemonListItem>> = object : Callback<List<PokemonListItem>> {
 
         override fun onFailure(call: Call<List<PokemonListItem>>, t: Throwable) {
-            //TODO Toast Check Internet connectivity blabla
+            Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
             Log.e("WS", "WebService call failed " + t.message)
             pokedex_fragment_error_txt.isVisible = true
             pokedex_fragment_list.isVisible = false
@@ -82,7 +83,7 @@ class Pokedex : Fragment(), HasList {
                 if (responseData != null) {
                     Log.d("WS", "WebService success : " + responseData.size + " items found")
                 } else {
-                    //TODO Toast Check Internet connectivity blabla
+                    Toast.makeText(context, "No item found, check your internet connection", Toast.LENGTH_LONG).show()
                     Log.w("WS", "WebService success : but no item found")
                     pokedex_fragment_error_txt.isVisible = true
                     pokedex_fragment_list.isVisible = false
@@ -109,7 +110,7 @@ class Pokedex : Fragment(), HasList {
             }
             else
             {
-                //TODO Toast Check Internet connectivity blabla
+                Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
                 Log.w("WS", "WebService failed")
                 pokedex_fragment_error_txt.isVisible = true
                 pokedex_fragment_list.isVisible = false
@@ -132,10 +133,6 @@ class Pokedex : Fragment(), HasList {
 
         if(data[position].types.isNotEmpty())
             holder.firstAttribute.setImageResource(getImageFromType(data[position].types[0].name))
-
-        //TODO delete this one
-        if (data[position].name == "accelgor")
-            Log.d("ACCELEGOR", "" + data[position].types.size)
 
         if (data[position].types.size > 1)
             holder.secondAttribute.setImageResource(getImageFromType(data[position].types[1].name))
