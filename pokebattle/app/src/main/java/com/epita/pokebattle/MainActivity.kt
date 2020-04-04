@@ -24,6 +24,13 @@ class MainActivity : AppCompatActivity(),
             .commit()
     }
 
+    override fun moveToLobby() {
+        supportFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.activity_main, Lobby())
+            .commit()
+    }
+
     override fun onListItemClicked(pokemonListItem: PokemonListItem) {
         var bundle = Bundle()
         bundle.putString("id", pokemonListItem.id.toString())

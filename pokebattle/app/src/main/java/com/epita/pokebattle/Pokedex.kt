@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.epita.pokebattle.methods.AllPokemons
 import com.epita.pokebattle.model.PokemonListItem
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_pokedex.*
@@ -33,20 +34,37 @@ class Pokedex : Fragment() {
 
         pokedex_fragment_error_txt.isVisible = false
 
-        val baseURL = "https://www.surleweb.xyz/api/"
-        val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
-        val retrofit = Retrofit.Builder()
-            .baseUrl(baseURL)
-            .addConverterFactory(jsonConverter)
-            .build()
-        val service: WSInterface = retrofit.create(WSInterface::class.java)
-        service.listPokemons().enqueue(wsCallback)
+        if (AllPokemons.data.isNotEmpty())
+        {
+            val onItemClickListener = View.OnClickListener { clickedRow ->
+                val pokemon = clickedRow.tag as PokemonListItem
+                (activity as PokedexInteractions).onListItemClicked(pokemon)
+            }
+
+            pokedex_fragment_list.setHasFixedSize(true)
+            pokedex_fragment_list.layoutManager = LinearLayoutManager(activity)
+            pokedex_fragment_list.adapter = PokedexAdapter(AllPokemons.data, activity!!, onItemClickListener)
+        }
+        else
+        {
+            val baseURL = "https://www.surleweb.xyz/api/"
+            val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
+            val retrofit = Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(jsonConverter)
+                .build()
+            val service: WSInterface = retrofit.create(WSInterface::class.java)
+            service.listPokemons().enqueue(wsCallback)
+        }
+
+
     }
 
 
     val wsCallback: Callback<List<PokemonListItem>> = object : Callback<List<PokemonListItem>> {
 
         override fun onFailure(call: Call<List<PokemonListItem>>, t: Throwable) {
+            //TODO Toast Check Internet connectivity blabla
             Log.e("WS", "WebService call failed " + t.message)
             pokedex_fragment_error_txt.isVisible = true
             pokedex_fragment_list.isVisible = false
@@ -61,12 +79,15 @@ class Pokedex : Fragment() {
                 }
                 else
                 {
+                    //TODO Toast Check Internet connectivity blabla
                     Log.w("WS", "WebService success : but no item found")
                     pokedex_fragment_error_txt.isVisible = true
                     pokedex_fragment_list.isVisible = false
                     return
                 }
-                val data = responseData!!.sortedBy { x -> x.name }
+                val data = responseData.sortedBy { x -> x.name }
+                AllPokemons.data = data
+
 
                 val onItemClickListener = View.OnClickListener { clickedRow ->
                     val pokemon = clickedRow.tag as PokemonListItem
@@ -79,6 +100,7 @@ class Pokedex : Fragment() {
             }
             else
             {
+                //TODO Toast Check Internet connectivity blabla
                 Log.w("WS", "WebService failed")
                 pokedex_fragment_error_txt.isVisible = true
                 pokedex_fragment_list.isVisible = false

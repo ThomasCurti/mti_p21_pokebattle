@@ -24,12 +24,17 @@ class SplashScreen : Fragment() {
             (activity as SplashScreenInteractions).moveToPokedex()
         }
 
+        splash_fragment_battle_btn.setOnClickListener {
+            (activity as SplashScreenInteractions).moveToLobby()
+        }
+
 
     }
 
 
     interface SplashScreenInteractions {
         fun moveToPokedex()
+        fun moveToLobby()
     }
 
 }

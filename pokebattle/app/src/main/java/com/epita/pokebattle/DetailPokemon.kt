@@ -50,6 +50,7 @@ class DetailPokemon : Fragment() {
 
     val wsCallbackGetPokemon: Callback<Pokemon> = object : Callback<Pokemon> {
         override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+            //TODO Toast Check Internet connectivity blabla
             Log.e("WS", "WebService call failed " + t.message)
         }
 
@@ -61,29 +62,11 @@ class DetailPokemon : Fragment() {
                 if (responseData != null) {
                     Log.d("WS", "WebService success : $responseData items found")
                 }
-                else
-                {
+                else {
+                    //TODO Toast Check Internet connectivity blabla
                     Log.w("WS", "WebService success : but no item found")
                     return
                 }
-
-                Log.e("TAG", responseData.name)
-                Log.e("TAG", responseData.height.toString())
-                Log.e("TAG", getBaseStat(responseData, "speed").toString())
-                Log.e("TAG", getBaseStat(responseData, "attack").toString())
-                Log.e("TAG", getBaseStat(responseData, "special-attack").toString())
-                Log.e("TAG", getBaseStat(responseData, "defense").toString())
-                Log.e("TAG", getBaseStat(responseData, "special-defense").toString())
-                Log.e("TAG", responseData.weight.toString())
-                Log.e("TAG", getBaseStat(responseData, "hp").toString())
-
-                Log.e("TAG", responseData.types[0].type.name)
-                if (responseData.types.size > 1)
-                    Log.e("TAG", responseData.types[1].type.name)
-
-                Log.e("TAG", responseData.sprites.front_default)
-
-
                 //can't use Glide so..
                 DownloadImageTask(activity!!.findViewById(R.id.detail_pokemon_fragment_img))
                     .execute(responseData.sprites.front_default);
@@ -106,6 +89,7 @@ class DetailPokemon : Fragment() {
             }
             else
             {
+                //TODO Toast Check Internet connectivity blabla
                 Log.w("WS", "WebService failed")
             }
 

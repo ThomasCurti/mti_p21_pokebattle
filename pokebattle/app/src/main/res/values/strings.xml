@@ -20,4 +20,13 @@
     <string name="pokedex_detail_fragment_defense">Defense</string>
     <string name="pokedex_detail_fragment_special_defense">Special Defense</string>
     <string name="pokedex_detail_fragment_types">Types:</string>
+
+    <string name="lobby_fragment_first_opponent">Your first opponent will be...</string>
+    <string name="lobby_fragment_select">Please select your Pokemons for the battle to come.</string>
+    <string name="lobby_fragment_first">1</string>
+    <string name="lobby_fragment_second">2</string>
+    <string name="lobby_fragment_third">3</string>
+    <string name="lobby_fragment_question_mark">\?</string>
+
+
 </resources>
