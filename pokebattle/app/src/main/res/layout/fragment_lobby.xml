@@ -18,8 +18,8 @@
         android:id="@+id/view2"
         android:layout_width="1sp"
         android:layout_height="175sp"
-        app:layout_constraintEnd_toStartOf="@+id/lobby_fragment_select_third_img"
-        app:layout_constraintStart_toEndOf="@+id/lobby_fragment_select_second_img"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/lobby_fragment_select_second_btn" />
 
     <Button
@@ -37,7 +37,8 @@
         android:layout_marginBottom="4dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_select_third_txt"
-        tools:layout_editor_absoluteX="273dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
     <TextView
         android:id="@+id/lobby_fragment_select_third_txt"
@@ -56,7 +57,8 @@
         android:layout_marginBottom="4dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_select_second_txt"
-        tools:layout_editor_absoluteX="141dp" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <TextView
         android:id="@+id/lobby_fragment_select_second_txt"
@@ -143,7 +145,8 @@
         android:layout_marginBottom="4dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toTopOf="@+id/lobby_fragment_select_first_txt"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/lobby_fragment_select_first_txt"
@@ -159,9 +162,8 @@
         android:id="@+id/view"
         android:layout_width="1sp"
         android:layout_height="175sp"
-        app:layout_constraintEnd_toStartOf="@+id/lobby_fragment_select_second_img"
-        app:layout_constraintHorizontal_bias="0.59"
-        app:layout_constraintStart_toEndOf="@+id/lobby_fragment_select_first_img"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/lobby_fragment_select_first_btn" />
 
     <Button
@@ -191,4 +193,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.67" />
 </androidx.constraintlayout.widget.ConstraintLayout>
