@@ -50,6 +50,8 @@ public fun removeHP(pokemon: Pokemon, hp: Int): Int
         if (stat.stat.name == "hp")
         {
             stat.base_stat = stat.base_stat - hp
+            if (stat.base_stat < 0)
+                stat.base_stat = 0
             return stat.base_stat
         }
     }

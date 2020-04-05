@@ -31,7 +31,7 @@ data class Move (
     val stat_changes: Array<Objects>,
     val super_contest_effect: Objects,
     val target: ObjNameUrl,
-    val type: Objects
+    val type: ObjNameUrl
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
