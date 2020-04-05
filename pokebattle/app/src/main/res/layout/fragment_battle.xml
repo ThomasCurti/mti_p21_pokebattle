@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Battle">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/battle_background"
+        app:layout_constraintBottom_toTopOf="@+id/view8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/battle_fragment_opponent_life_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/battle_fragment_opponent_image_img"
+        app:layout_constraintStart_toStartOf="@+id/battle_fragment_opponent_image_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/battle_fragment_opponent_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/battle_fragment_opponent_image_img"
+        app:layout_constraintStart_toStartOf="@+id/battle_fragment_opponent_image_img"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_opponent_life_txt" />
+
+    <Button
+        android:id="@+id/battle_fragment_attack_first_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+    <Button
+        android:id="@+id/battle_fragment_attack_second_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_attack_first_btn" />
+
+    <Button
+        android:id="@+id/battle_fragment_attack_third_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/battle_fragment_attack_first_btn"
+        app:layout_constraintStart_toStartOf="@+id/battle_fragment_attack_first_btn"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_first_btn" />
+
+    <Button
+        android:id="@+id/battle_fragment_attack_fourth_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/battle_fragment_attack_second_btn"
+        app:layout_constraintStart_toStartOf="@+id/battle_fragment_attack_second_btn"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_attack_third_btn" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_current_image_img"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="64dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_current_name_txt" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_opponent_image_img"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_opponent_name_txt" />
+
+    <TextView
+        android:id="@+id/battle_fragment_current_life_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/battle_fragment_current_name_txt"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_opponent_image_img" />
+
+    <TextView
+        android:id="@+id/battle_fragment_current_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/battle_fragment_current_image_img"
+        app:layout_constraintStart_toEndOf="@+id/battle_fragment_current_type_img"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_current_life_txt" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_opponent_type_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/battle_fragment_opponent_name_txt"
+        app:layout_constraintEnd_toStartOf="@+id/battle_fragment_opponent_image_img"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_opponent_life_txt"
+        app:layout_constraintVertical_bias="0.50" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_current_type_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/battle_fragment_current_image_img"
+        app:layout_constraintEnd_toStartOf="@+id/battle_fragment_current_image_img"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_current_life_txt" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_opponent_first_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_opponent_second_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        
+        app:layout_constraintStart_toEndOf="@+id/battle_fragment_opponent_first_img"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_opponent_first_img" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_opponent_third_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        
+        app:layout_constraintStart_toEndOf="@+id/battle_fragment_opponent_second_img"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_opponent_first_img" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_pokemon_team_first_img"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        
+        app:layout_constraintEnd_toStartOf="@+id/battle_fragment_pokemon_team_second_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_pokemon_team_second_img" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_pokemon_team_second_img"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="64dp"
+        
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+    <ImageView
+        android:id="@+id/battle_fragment_pokemon_team_third_img"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/battle_fragment_pokemon_team_second_img"
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_pokemon_team_second_img" />
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="404dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/separator_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_current_image_img" />
+
+    <View
+        android:id="@+id/view9"
+        android:layout_width="404dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/separator_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_third_btn" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

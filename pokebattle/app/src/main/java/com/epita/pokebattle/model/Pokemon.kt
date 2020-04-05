@@ -15,24 +15,37 @@ data class PokemonSprites (
 
 data class TypePokemon (
     val slot: Int,
-    val type: TypeNameUrl
-)
-
-data class TypeNameUrl (
-    val name: String,
-    val url: String
+    val type: ObjNameUrl
 )
 
 data class StatPokemon (
     val base_stat: Int,
     val effort: Int,
-    val stat: StatNameUrl
+    val stat: ObjNameUrl
 )
 
-data class StatNameUrl (
-    val name: String,
-    val url: String
-)
+data class Moves (
+    val move: ObjNameUrl,
+    val version_group_details: Array<Objects>
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Moves
+
+        if (move != other.move) return false
+        if (!version_group_details.contentEquals(other.version_group_details)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = move.hashCode()
+        result = 31 * result + version_group_details.contentHashCode()
+        return result
+    }
+}
 
 data class Pokemon (
     val id: Int,
@@ -47,7 +60,7 @@ data class Pokemon (
     val game_indices: Array<Objects>,
     val held_items: Array<Objects>,
     val location_area_encounters: String,
-    val moves: Array<Objects>,
+    val moves: Array<Moves>,
     val sprites: PokemonSprites,
     val species: Objects,
     val version_group: Objects,

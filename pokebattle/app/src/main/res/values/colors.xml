@@ -7,5 +7,6 @@
     <color name="splash_title_red">#cc1100</color>
     <color name="separator_color">#777777</color>
     <color name="background_lobby_select">#FDFDB1</color>
+    <color name="background_battle_unselected">#AAAAAA</color>
     <color name="white">#FFFFFF</color>
 </resources>

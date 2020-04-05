@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.epita.pokebattle.model.PokemonListItem
 import com.epita.pokebattle.model.TypeItem
+import com.google.gson.GsonBuilder
 
 
 class MainActivity : AppCompatActivity(),
@@ -48,8 +49,24 @@ class MainActivity : AppCompatActivity(),
             .commit()
     }
 
-    override fun moveToFight() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun moveToBattle(firstSelected: PokemonListItem,
+                              secondSelected: PokemonListItem,
+                              thirdSelect: PokemonListItem,
+                              opponentSelected: PokemonListItem) {
+
+        var bundle = Bundle()
+        bundle.putString("firstName", firstSelected.name)
+        bundle.putString("secondName", secondSelected.name)
+        bundle.putString("thirdName", thirdSelect.name)
+        bundle.putString("opponentName", opponentSelected.name)
+
+        val battle = Battle()
+        battle.arguments = bundle
+
+        supportFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.activity_main, battle)
+            .commit()
     }
 
     override fun moveToTypeHelper(type: TypeItem) {

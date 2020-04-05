@@ -35,6 +35,10 @@ class Lobby : Fragment(), HasList {
     }
 
     var selectedPokemon: PokemonListItem? = null
+
+    var firstPokemon: PokemonListItem? = null
+    var secondPokemon: PokemonListItem? = null
+    var thirdPokemon: PokemonListItem? = null
     var opponentPokemon: PokemonListItem? = null
     var nbSelected: Int = 0
 
@@ -46,12 +50,17 @@ class Lobby : Fragment(), HasList {
         lobby_fragment_select_first_btn.setOnClickListener {
             if (selectedPokemon != null)
             {
-                nbSelected++
+                if (firstPokemon == null)
+                    nbSelected++
                 lobby_fragment_select_first_txt.text = selectedPokemon!!.name
                 DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_select_first_img))
                     .execute(selectedPokemon!!.sprite);
+                firstPokemon = selectedPokemon
                 if (nbSelected >= 3)
+                {
                     lobby_fragment_fight_btn.visibility = View.VISIBLE
+                }
+
             } else {
                 Toast.makeText(context, "You forgot to choose a Pokemon", Toast.LENGTH_SHORT).show()
             }
@@ -60,12 +69,16 @@ class Lobby : Fragment(), HasList {
         lobby_fragment_select_second_btn.setOnClickListener {
             if (selectedPokemon != null)
             {
-                nbSelected++
+                if (secondPokemon == null)
+                    nbSelected++
                 lobby_fragment_select_second_txt.text = selectedPokemon!!.name
                 DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_select_second_img))
                     .execute(selectedPokemon!!.sprite);
+                secondPokemon = selectedPokemon
                 if (nbSelected >= 3)
+                {
                     lobby_fragment_fight_btn.visibility = View.VISIBLE
+                }
             } else {
                 Toast.makeText(context, "You forgot to choose a Pokemon", Toast.LENGTH_SHORT).show()
             }
@@ -74,16 +87,24 @@ class Lobby : Fragment(), HasList {
         lobby_fragment_select_third_btn.setOnClickListener {
             if (selectedPokemon != null)
             {
-                nbSelected++
+                if (thirdPokemon == null)
+                    nbSelected++
                 lobby_fragment_select_third_txt.text = selectedPokemon!!.name
                 DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_select_third_img))
                     .execute(selectedPokemon!!.sprite);
+                thirdPokemon = selectedPokemon
                 if (nbSelected >= 3)
+                {
                     lobby_fragment_fight_btn.visibility = View.VISIBLE
+                }
 
             } else {
                 Toast.makeText(context, "You forgot to choose a Pokemon", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        lobby_fragment_fight_btn.setOnClickListener {
+            (activity as LobbyInteractions).moveToBattle(firstPokemon!!, secondPokemon!!, thirdPokemon!!, opponentPokemon!!)
         }
 
         lobby_fragment_opponent_first_attribute_img.setOnClickListener {
@@ -241,7 +262,10 @@ class Lobby : Fragment(), HasList {
     }
 
     interface LobbyInteractions {
-        fun moveToFight()
+        fun moveToBattle(firstSelected: PokemonListItem,
+                                  secondSelected: PokemonListItem,
+                                  thirdSelect: PokemonListItem,
+                                  opponentSelected: PokemonListItem)
         fun moveToTypeHelper(type: TypeItem)
     }
 
