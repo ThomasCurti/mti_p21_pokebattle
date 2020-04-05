@@ -42,3 +42,16 @@ public fun getBaseStat(pokemon: Pokemon, type: String): Int
     }
     return 0
 }
+
+public fun removeHP(pokemon: Pokemon, hp: Int): Int
+{
+    for (stat in pokemon.stats)
+    {
+        if (stat.stat.name == "hp")
+        {
+            stat.base_stat = stat.base_stat - hp
+            return stat.base_stat
+        }
+    }
+    return 0
+}

@@ -19,7 +19,7 @@ data class TypePokemon (
 )
 
 data class StatPokemon (
-    val base_stat: Int,
+    var base_stat: Int,
     val effort: Int,
     val stat: ObjNameUrl
 )

@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.epita.pokebattle.model.PokemonListItem
 import com.epita.pokebattle.model.TypeItem
-import com.google.gson.GsonBuilder
 
 
 class MainActivity : AppCompatActivity(),
                      SplashScreen.SplashScreenInteractions,
                      Pokedex.PokedexInteractions,
-                     Lobby.LobbyInteractions {
+                     Lobby.LobbyInteractions,
+                     Battle.BattleInteractions {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +81,10 @@ class MainActivity : AppCompatActivity(),
             .addToBackStack(null)
             .add(R.id.activity_main, typeHelper)
             .commit()
+    }
+
+    override fun goBackToLobby() {
+        supportFragmentManager.popBackStackImmediate()
     }
 
 

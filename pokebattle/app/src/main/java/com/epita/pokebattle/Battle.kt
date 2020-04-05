@@ -1,6 +1,7 @@
 package com.epita.pokebattle
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.epita.pokebattle.methods.*
 import com.epita.pokebattle.model.Move
+import com.epita.pokebattle.model.Move.PokemonMove
 import com.epita.pokebattle.model.Pokemon
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.fragment_battle.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,8 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import kotlin.random.Random
-import com.epita.pokebattle.model.Move.PokemonMove
-import kotlinx.android.synthetic.main.fragment_battle.*
+
 
 class Battle : Fragment() {
 
@@ -39,22 +41,16 @@ class Battle : Fragment() {
     var secondOpponentName = ""
     var thirdOpponentName = ""
 
+    var pokemons: MutableList<Pokemon?> = mutableListOf(null, null, null)
+    var pokemonsAttack: MutableList<PokemonMove?> = mutableListOf(null, null, null)
 
-    var firstPokemon: Pokemon? = null
-    var secondPokemon: Pokemon? = null
-    var thirdPokemon: Pokemon? = null
+    var opponents: MutableList<Pokemon?> = mutableListOf(null, null, null)
+    var opponentsAttacks: MutableList<PokemonMove?> = mutableListOf(null, null, null)
 
-    var firstAttacks: PokemonMove? = null
-    var secondAttacks: PokemonMove? = null
-    var thirdAttacks: PokemonMove? = null
 
-    var firstOpponent: Pokemon? = null
-    var secondOpponent: Pokemon? = null
-    var thirdOpponent: Pokemon? = null
-
-    var firstOpponentAttacks: PokemonMove? = null
-    var secondOpponentAttacks: PokemonMove? = null
-    var thirdOpponentAttacks: PokemonMove? = null
+    var currentPokemon: Int = 0
+    var currentOpponent: Int = 0
+    var canAttack: Boolean = true;
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -84,6 +80,59 @@ class Battle : Fragment() {
         service.getPokemon(firstOpponentName).enqueue(wsCallbackGetPokemon)
         service.getPokemon(secondOpponentName).enqueue(wsCallbackGetPokemon)
         service.getPokemon(thirdOpponentName).enqueue(wsCallbackGetPokemon)
+
+        /*
+         * Add logic
+         * */
+        battle_fragment_attack_first_btn.setOnClickListener {
+            if (pokemonsAttack[currentPokemon]!!.moves.size > 1)
+            {
+
+            }
+        }
+
+        battle_fragment_attack_second_btn.setOnClickListener {
+            if (pokemonsAttack[currentPokemon]!!.moves.size > 2)
+            {
+
+            }
+        }
+
+        battle_fragment_attack_third_btn.setOnClickListener {
+            if (pokemonsAttack[currentPokemon]!!.moves.size > 3)
+            {
+
+            }
+        }
+
+        battle_fragment_attack_fourth_btn.setOnClickListener {
+            if (pokemonsAttack[currentPokemon]!!.moves.size > 4)
+            {
+
+            }
+        }
+
+        battle_fragment_pokemon_team_first_img.setOnClickListener {
+            if (changePokemon(0))
+            {
+                //TODO AI turn
+            }
+        }
+
+        battle_fragment_pokemon_team_second_img.setOnClickListener {
+            if (changePokemon(1))
+            {
+                //TODO AI turn
+            }
+        }
+
+        battle_fragment_pokemon_team_third_img.setOnClickListener {
+            if (changePokemon(2))
+            {
+                //TODO AI turn
+            }
+        }
+
     }
     /*
      * Get all datas
@@ -135,11 +184,20 @@ class Battle : Fragment() {
 
     fun fillData(data: Pokemon): Int
     {
-        if (data.name == firstName && firstPokemon == null) {
+        if (data.name == firstName && pokemons[0] == null) {
 
             //can't use Glide so..
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
-                .execute(data.sprites.back_default);
+            if (data.sprites.back_default != null)
+            {
+                DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
+                    .execute(data.sprites.back_default);
+            }
+            else
+            {
+                DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
+                    .execute(data.sprites.front_default);
+            }
+
             battle_fragment_current_life_txt.text = "hp: " + getBaseStat(data, "hp").toString()
             battle_fragment_current_name_txt.text = data.name
             battle_fragment_current_type_img.setImageResource(getImageFromType(data.types[0].type.name))
@@ -150,42 +208,70 @@ class Battle : Fragment() {
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_pokemon_team_first_img.setBackgroundColor(resources.getColor(R.color.background_lobby_select))
 
-            firstPokemon = data
+            pokemons[0] = data
             return 1
         }
 
-        else if (data.name == secondName && secondPokemon == null) {
-            secondPokemon = data
+        else if (data.name == secondName && pokemons[1] == null) {
+            pokemons[1] = data
 
             DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_pokemon_team_second_img))
                 .execute(data.sprites.front_default);
+            //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_pokemon_team_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
 
             return 2
         }
 
-        else if (data.name == thirdName && thirdPokemon == null) {
-            thirdPokemon = data
+        else if (data.name == thirdName && pokemons[2] == null) {
+            pokemons[2] = data
 
             DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_pokemon_team_third_img))
                 .execute(data.sprites.front_default);
+            //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_pokemon_team_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
 
             return 3
         }
 
-        else if (data.name == firstOpponentName && firstOpponent == null) {
-            firstOpponent = data
+        else if (data.name == firstOpponentName && opponents[0] == null) {
+            opponents[0] = data
+
+            //can't use Glide so..
+            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_image_img))
+                .execute(data.sprites.front_default);
+            battle_fragment_opponent_life_txt.text = "hp: " + getBaseStat(data, "hp").toString()
+            battle_fragment_opponent_name_txt.text = data.name
+            battle_fragment_opponent_type_img.setImageResource(getImageFromType(data.types[0].type.name))
+
+            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_first_img))
+                .execute(data.sprites.front_default);
+
+            //deprecated since API 23 but we are using API 21 so we must use it
+            battle_fragment_opponent_first_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
+
             return 4
         }
 
-        else if (data.name == secondOpponentName && secondOpponent == null) {
-            secondOpponent = data
+        else if (data.name == secondOpponentName && opponents[1] == null) {
+            opponents[1] = data
+
+            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_second_img))
+                .execute(data.sprites.front_default);
+
+            //deprecated since API 23 but we are using API 21 so we must use it
+            battle_fragment_opponent_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
             return 5
         }
 
-        else if (data.name == thirdOpponentName && thirdOpponent == null) {
-            thirdOpponent = data
+        else if (data.name == thirdOpponentName && opponents[2] == null) {
+            opponents[2] = data
+
+            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_third_img))
+                .execute(data.sprites.front_default);
+
+            //deprecated since API 23 but we are using API 21 so we must use it
+            battle_fragment_opponent_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
             return 6
         }
         return -1
@@ -234,7 +320,7 @@ class Battle : Fragment() {
             }
         }
 
-        //TODO random ?
+        //TODO random choose
         for (move in data.moves) {
             val moveSplit = move.move.url.split("/")
             val id = moveSplit[moveSplit.size - 2]
@@ -244,70 +330,80 @@ class Battle : Fragment() {
 
     fun checkMoves(data: Pokemon): Boolean
     {
-        val test = (firstAttacks != null && data.name == firstAttacks!!.name && firstAttacks!!.moves.size >= 4) ||
-                (secondAttacks != null && data.name == secondAttacks!!.name && secondAttacks!!.moves.size >= 4) ||
-                (thirdAttacks != null && data.name == thirdAttacks!!.name && thirdAttacks!!.moves.size >= 4) ||
-                (firstOpponentAttacks != null && data.name == firstOpponentAttacks!!.name && firstOpponentAttacks!!.moves.size >= 4) ||
-                (secondOpponentAttacks != null && data.name == secondOpponentAttacks!!.name && secondOpponentAttacks!!.moves.size >= 4) ||
-                (thirdOpponentAttacks != null && data.name == thirdOpponentAttacks!!.name && thirdOpponentAttacks!!.moves.size >= 4)
+        val test = (pokemonsAttack[0] != null && data.name == pokemonsAttack[0]!!.name && pokemonsAttack[0]!!.moves.size >= 4) ||
+                (pokemonsAttack[1] != null && data.name == pokemonsAttack[1]!!.name && pokemonsAttack[1]!!.moves.size >= 4) ||
+                (pokemonsAttack[2] != null && data.name == pokemonsAttack[2]!!.name && pokemonsAttack[2]!!.moves.size >= 4) ||
+                (opponentsAttacks[0] != null && data.name == opponentsAttacks[0]!!.name && opponentsAttacks[0]!!.moves.size >= 4) ||
+                (opponentsAttacks[1] != null && data.name == opponentsAttacks[1]!!.name && opponentsAttacks[1]!!.moves.size >= 4) ||
+                (opponentsAttacks[2] != null && data.name == opponentsAttacks[2]!!.name && opponentsAttacks[2]!!.moves.size >= 4)
         return test
     }
 
     fun fillAttacks(move: Move, name: String, nb: Int)
     {
-        if (firstPokemon != null && name == firstPokemon!!.name && nb == 1) {
-            if (checkMoves(firstPokemon!!))
+        if (pokemons[0] != null && name == pokemons[0]!!.name && nb == 1) {
+            if (checkMoves(pokemons[0]!!))
             {
                 return
             }
-            if(firstAttacks == null)
-                firstAttacks = PokemonMove(firstPokemon!!.name, mutableListOf())
-            firstAttacks!!.moves.add(move)
+            if(pokemonsAttack[0] == null)
+                pokemonsAttack[0] = PokemonMove(pokemons[0]!!.name, mutableListOf())
+            pokemonsAttack[0]!!.moves.add(move)
 
-        } else if (secondPokemon != null && name == secondPokemon!!.name && nb == 2) {
-            if (checkMoves(secondPokemon!!))
-            {
-                return
-            }
-            if(secondAttacks == null)
-                secondAttacks = PokemonMove(secondPokemon!!.name, mutableListOf())
-            secondAttacks!!.moves.add(move)
+            if (pokemonsAttack[0]!!.moves.size > 0)
+                battle_fragment_attack_first_btn.text = pokemonsAttack[0]!!.moves[0].name
+            if (pokemonsAttack[0]!!.moves.size > 1)
+                battle_fragment_attack_second_btn.text = pokemonsAttack[0]!!.moves[1].name
+            if (pokemonsAttack[0]!!.moves.size > 2)
+                battle_fragment_attack_third_btn.text = pokemonsAttack[0]!!.moves[2].name
+            if (pokemonsAttack[0]!!.moves.size > 3)
+                battle_fragment_attack_fourth_btn.text = pokemonsAttack[0]!!.moves[3].name
 
-        } else if (thirdPokemon != null && name == thirdPokemon!!.name && nb == 3) {
-            if (checkMoves(thirdPokemon!!))
-            {
-                return
-            }
-            if(thirdAttacks == null)
-                thirdAttacks = PokemonMove(thirdPokemon!!.name, mutableListOf())
-            thirdAttacks!!.moves.add(move)
 
-        } else if (firstOpponent != null && name == firstOpponent!!.name && nb == 4) {
-            if (checkMoves(firstOpponent!!))
+        } else if (pokemons[1] != null && name == pokemons[1]!!.name && nb == 2) {
+            if (checkMoves(pokemons[1]!!))
             {
                 return
             }
-            if(firstOpponentAttacks == null)
-                firstOpponentAttacks = PokemonMove(firstOpponent!!.name, mutableListOf())
-            firstOpponentAttacks!!.moves.add(move)
+            if(pokemonsAttack[1] == null)
+                pokemonsAttack[1] = PokemonMove(pokemons[1]!!.name, mutableListOf())
+            pokemonsAttack[1]!!.moves.add(move)
 
-        } else if (secondOpponent != null && name == secondOpponent!!.name && nb == 5) {
-            if (checkMoves(secondOpponent!!))
+        } else if (pokemons[2] != null && name == pokemons[2]!!.name && nb == 3) {
+            if (checkMoves(pokemons[2]!!))
             {
                 return
             }
-            if(secondOpponentAttacks == null)
-                secondOpponentAttacks = PokemonMove(secondOpponent!!.name, mutableListOf())
-            secondOpponentAttacks!!.moves.add(move)
+            if(pokemonsAttack[2] == null)
+                pokemonsAttack[2] = PokemonMove(pokemons[2]!!.name, mutableListOf())
+            pokemonsAttack[2]!!.moves.add(move)
 
-        } else if (thirdOpponent != null && name == thirdOpponent!!.name && nb == 6) {
-            if (checkMoves(thirdOpponent!!))
+        } else if (opponents[0] != null && name == opponents[0]!!.name && nb == 4) {
+            if (checkMoves(opponents[0]!!))
             {
                 return
             }
-            if(thirdOpponentAttacks == null)
-                thirdOpponentAttacks = PokemonMove(thirdOpponent!!.name, mutableListOf())
-            thirdOpponentAttacks!!.moves.add(move)
+            if(opponentsAttacks[0] == null)
+                opponentsAttacks[0] = PokemonMove(opponents[0]!!.name, mutableListOf())
+            opponentsAttacks[0]!!.moves.add(move)
+
+        } else if (opponents[1] != null && name == opponents[1]!!.name && nb == 5) {
+            if (checkMoves(opponents[1]!!))
+            {
+                return
+            }
+            if(opponentsAttacks[1] == null)
+                opponentsAttacks[1] = PokemonMove(opponents[1]!!.name, mutableListOf())
+            opponentsAttacks[1]!!.moves.add(move)
+
+        } else if (opponents[2] != null && name == opponents[2]!!.name && nb == 6) {
+            if (checkMoves(opponents[2]!!))
+            {
+                return
+            }
+            if(opponentsAttacks[2] == null)
+                opponentsAttacks[2] = PokemonMove(opponents[2]!!.name, mutableListOf())
+            opponentsAttacks[2]!!.moves.add(move)
 
         }
     }
@@ -317,6 +413,157 @@ class Battle : Fragment() {
     * Add logic
     * */
 
+    //return 0 if not end, -1 if loose, 1 if win
+    fun checkEnd(): Int
+    {
+        val opponentsLife = getBaseStat(opponents[0]!!, "hp") +
+                            getBaseStat(opponents[1]!!, "hp") +
+                            getBaseStat(opponents[2]!!, "hp")
 
+        val teamLife = getBaseStat(pokemons[0]!!, "hp") +
+                        getBaseStat(pokemons[1]!!, "hp") +
+                        getBaseStat(pokemons[2]!!, "hp")
+
+        if (opponentsLife > 0 && teamLife > 0)
+            return 0
+
+        if (opponentsLife < 0)
+            return 1
+
+        return -1
+    }
+
+    fun isCurrentFirst(): Boolean {
+        return getBaseStat(pokemons[currentPokemon]!!, "speed") >= getBaseStat(opponents[currentOpponent]!!, "speed")
+    }
+
+    fun attackEnemy(damage: Int) {
+        var life = removeHP(opponents[currentOpponent]!!, damage)
+        if (life <= 0)
+        {
+            battle_fragment_opponent_life_txt.text = "hp: 0"
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                if (checkEnd() == 1)
+                {
+                    //TODO Show WIN blabla
+                    (activity as BattleInteractions).goBackToLobby()
+                }
+                else
+                {
+                    changeEnemyPokemon()
+                }
+            }, 1000)
+        }
+        else
+        {
+            battle_fragment_opponent_life_txt.text = "hp: " + life.toString()
+        }
+    }
+
+    fun attackTeam(damage: Int) {
+        var life = removeHP(pokemons[currentPokemon]!!, damage)
+        if (life <= 0)
+        {
+            battle_fragment_current_life_txt.text = "hp: 0"
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                if (checkEnd() == -1)
+                {
+                    //TODO Show Loose blabla
+                    (activity as BattleInteractions).goBackToLobby()
+                }
+                else
+                {
+                    forceChangePokemon()
+                }
+            }, 1000)
+        }
+        else
+        {
+            battle_fragment_current_life_txt.text = "hp: " + life.toString()
+        }
+    }
+
+    fun changeEnemyPokemon()
+    {
+        if (currentOpponent == 0)
+            battle_fragment_opponent_first_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
+        if (currentOpponent == 1)
+            battle_fragment_opponent_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
+        //should never happen
+        if (currentOpponent == 2)
+            battle_fragment_opponent_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
+
+        currentOpponent++
+
+        //can't use Glide so..
+        DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_image_img))
+            .execute(opponents[currentOpponent]!!.sprites.front_default);
+        battle_fragment_opponent_life_txt.text = "hp: " + getBaseStat(opponents[currentOpponent]!!, "hp").toString()
+        battle_fragment_opponent_name_txt.text = opponents[currentOpponent]!!.name
+        battle_fragment_opponent_type_img.setImageResource(getImageFromType(opponents[currentOpponent]!!.types[0].type.name))
+    }
+
+    fun forceChangePokemon() {
+        canAttack = false
+        if (currentPokemon == 0)
+            battle_fragment_pokemon_team_first_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
+        if (currentPokemon == 1)
+            battle_fragment_pokemon_team_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
+        if (currentPokemon == 2)
+            battle_fragment_pokemon_team_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
+
+        battle_fragment_attack_first_btn.text = ""
+        battle_fragment_attack_second_btn.text = ""
+        battle_fragment_attack_third_btn.text = ""
+        battle_fragment_attack_fourth_btn.text = ""
+    }
+
+    fun changePokemon(selectedPokemon: Int): Boolean
+    {
+        if (currentPokemon == selectedPokemon)
+            return false
+
+        if (currentPokemon == 0)
+            battle_fragment_pokemon_team_first_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
+        if (currentPokemon == 1)
+            battle_fragment_pokemon_team_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
+        if (currentPokemon == 2)
+            battle_fragment_pokemon_team_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
+
+        currentPokemon = selectedPokemon
+
+        if (currentPokemon == 0)
+            battle_fragment_pokemon_team_first_img.setBackgroundColor(resources.getColor(R.color.background_lobby_select))
+        if (currentPokemon == 1)
+            battle_fragment_pokemon_team_second_img.setBackgroundColor(resources.getColor(R.color.background_lobby_select))
+        if (currentPokemon == 2)
+            battle_fragment_pokemon_team_third_img.setBackgroundColor(resources.getColor(R.color.background_lobby_select))
+
+
+        //can't use Glide so..
+        if (pokemons[currentPokemon]!!.sprites.back_default != null)
+        {
+            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
+                .execute(pokemons[currentPokemon]!!.sprites.back_default);
+        }
+        else
+        {
+            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
+                .execute(pokemons[currentPokemon]!!.sprites.front_default);
+        }
+
+        battle_fragment_current_life_txt.text = "hp: " + getBaseStat(pokemons[currentPokemon]!!, "hp").toString()
+        battle_fragment_current_name_txt.text = pokemons[currentPokemon]!!.name
+        battle_fragment_current_type_img.setImageResource(getImageFromType(pokemons[currentPokemon]!!.types[0].type.name))
+
+        return true
+    }
+
+
+    interface BattleInteractions {
+        fun goBackToLobby()
+    }
 
 }

@@ -8,5 +8,6 @@
     <color name="separator_color">#777777</color>
     <color name="background_lobby_select">#FDFDB1</color>
     <color name="background_battle_unselected">#AAAAAA</color>
+    <color name="background_battle_dead">#6C0000</color>
     <color name="white">#FFFFFF</color>
 </resources>
