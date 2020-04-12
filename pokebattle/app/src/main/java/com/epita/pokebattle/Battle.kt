@@ -66,6 +66,7 @@ class Battle : Fragment() {
         /*
         * Get all datas
         * */
+
         firstName = arguments!!.getString("firstName")!!
         secondName = arguments!!.getString("secondName")!!
         thirdName = arguments!!.getString("thirdName")!!
@@ -81,6 +82,7 @@ class Battle : Fragment() {
             .addConverterFactory(jsonConverter)
             .build()
         val service: WSinterfaceGetPokemon = retrofit.create(WSinterfaceGetPokemon::class.java)
+
         service.getPokemon(firstName).enqueue(wsCallbackGetPokemon)
         service.getPokemon(secondName).enqueue(wsCallbackGetPokemon)
         service.getPokemon(thirdName).enqueue(wsCallbackGetPokemon)
@@ -243,13 +245,14 @@ class Battle : Fragment() {
     val wsCallbackGetPokemon: Callback<Pokemon> = object : Callback<Pokemon> {
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
                 Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
-                Log.e("WSPokemon", "WebService call failed " + t.message)
+                Log.e("WSPokemon", " WebService call failed " + t.message)
             }
 
             override fun onResponse(call: Call<Pokemon>, response:
             Response<Pokemon>
             ) {
                 if (response.code() == 200) {
+
                     val responseData = response.body()
                     if (responseData != null) {
                         Log.d("WSPokemon", "WebService success : $responseData items found")
@@ -278,7 +281,7 @@ class Battle : Fragment() {
     val wsCallbackGetTypes: Callback<Types> = object : Callback<Types> {
         override fun onFailure(call: Call<Types>, t: Throwable) {
             Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
-            Log.e("WS", "WebService call failed " + t.message)
+            Log.e("WSType", " WebService call failed " + t.message)
         }
 
         override fun onResponse(call: Call<Types>, response:
@@ -287,11 +290,11 @@ class Battle : Fragment() {
             if (response.code() == 200) {
                 val responseData = response.body()
                 if (responseData != null) {
-                    Log.d("WS", "WebService success : $responseData items found")
+                    Log.d("WS type", "WebService success : $responseData items found")
                 }
                 else {
                     Toast.makeText(context, "No item found, check your internet connection", Toast.LENGTH_LONG).show()
-                    Log.w("WS", "WebService success : but no item found")
+                    Log.w("WS type", "WebService success : but no item found")
                     return
                 }
 
@@ -301,7 +304,7 @@ class Battle : Fragment() {
             else
             {
                 Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
-                Log.e("WS", "WebService failed " + response.code() + " " + response.body() + "\n" + response.errorBody())
+                Log.e("WS type", "WebService failed " + response.code() + " " + response.body() + "\n" + response.errorBody())
             }
 
         }
@@ -424,7 +427,7 @@ class Battle : Fragment() {
         val wsCallbackGetMove: CallBackWithArg<Move> = object : CallBackWithArg<Move>(data.name, nb) {
             override fun onFailure(call: Call<Move>, t: Throwable) {
                 Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
-                Log.e("WS", "WebService call failed " + t.message)
+                Log.e("WSMove", "WebService call failed " + t.message)
             }
             override fun onResponse(call: Call<Move>, response:
             Response<Move>
@@ -432,11 +435,11 @@ class Battle : Fragment() {
                 if (response.code() == 200) {
                     val responseData = response.body()
                     if (responseData != null) {
-                        Log.d("WS", "WebService success : $responseData items found")
+                        Log.d("WSMove", "WebService success : item found")
                     }
                     else {
                         Toast.makeText(context, "No item found, check your internet connection", Toast.LENGTH_LONG).show()
-                        Log.w("WS", "WebService success : but no item found")
+                        Log.w("WSMove", "WebService success : but no item found")
                         return
                     }
 
@@ -449,7 +452,7 @@ class Battle : Fragment() {
                 else
                 {
                     Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
-                    Log.w("WS", "WebService failed")
+                    Log.w("WSMove", "WebService failed")
                 }
             }
         }

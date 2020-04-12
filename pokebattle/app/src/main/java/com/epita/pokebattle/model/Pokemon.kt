@@ -1,8 +1,9 @@
 package com.epita.pokebattle.model
 
 import java.util.*
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
-data class PokemonSprites (
+public data class PokemonSprites (
     val front_default: String,
     val front_female: String,
     val front_shiny: String,
@@ -13,20 +14,20 @@ data class PokemonSprites (
     val back_shiny_female: String
 )
 
-data class TypePokemon (
+public data class TypePokemon (
     val slot: Int,
     val type: ObjNameUrl
 )
 
-data class StatPokemon (
+public data class StatPokemon (
     var base_stat: Int,
     val effort: Int,
     val stat: ObjNameUrl
 )
 
-data class Moves (
+public data class Moves (
     val move: ObjNameUrl,
-    val version_group_details: Array<Objects>
+    val version_group_details: Array<kotlin.Any>
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -47,7 +48,7 @@ data class Moves (
     }
 }
 
-data class Pokemon (
+public data class Pokemon (
     val id: Int,
     val name: String,
     val base_experience: Int,
@@ -55,17 +56,17 @@ data class Pokemon (
     val is_default: Boolean,
     val order: Int,
     val weight: Int,
-    val abilities: Array<Objects>,
-    val forms: Array<Objects>,
-    val game_indices: Array<Objects>,
-    val held_items: Array<Objects>,
+    val abilities: Array<kotlin.Any>,
+    val forms: Array<kotlin.Any>,
+    val game_indices: Array<kotlin.Any>,
+    val held_items: Array<kotlin.Any>,
     val location_area_encounters: String,
     val moves: Array<Moves>,
     val sprites: PokemonSprites,
-    val species: Objects,
-    val version_group: Objects,
-    val names: Array<Objects>,
-    val form_names: Array<Objects>,
+    val species: kotlin.Any,
+    val version_group: kotlin.Any,
+    val names: Array<kotlin.Any>,
+    val form_names: Array<kotlin.Any>,
     val stats: Array<StatPokemon>,
     val types: Array<TypePokemon>
 ) {
@@ -115,9 +116,9 @@ data class Pokemon (
         result = 31 * result + moves.contentHashCode()
         result = 31 * result + sprites.hashCode()
         result = 31 * result + species.hashCode()
-        result = 31 * result + version_group.hashCode()
+      /*  result = 31 * result + version_group.hashCode()
         result = 31 * result + names.contentHashCode()
-        result = 31 * result + form_names.contentHashCode()
+        result = 31 * result + form_names.contentHashCode()*/
         result = 31 * result + stats.contentHashCode()
         result = 31 * result + types.contentHashCode()
         return result

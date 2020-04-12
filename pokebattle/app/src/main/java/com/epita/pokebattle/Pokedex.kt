@@ -120,7 +120,6 @@ class Pokedex : Fragment(), HasList {
     }
 
     val clickedListener : View.OnClickListener = View.OnClickListener{ clickedRow ->
-        Log.e("TAG", "TEST")
         val pokemon = clickedRow.tag as PokemonListItem
         (activity as PokedexInteractions).onListPokedexItemClicked(pokemon)
     }

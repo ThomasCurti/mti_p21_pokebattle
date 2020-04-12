@@ -13,7 +13,6 @@ import com.epita.pokebattle.methods.getImageFromType
 import com.epita.pokebattle.model.Pokemon
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_detail_pokemon.*
-import kotlinx.android.synthetic.main.fragment_lobby.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
