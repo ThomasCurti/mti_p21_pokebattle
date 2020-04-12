@@ -9,8 +9,11 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.with
 import com.epita.pokebattle.methods.AllPokemons
-import com.epita.pokebattle.methods.DownloadImageTask
 import com.epita.pokebattle.methods.getImageFromType
 import com.epita.pokebattle.model.PokemonListItem
 import com.epita.pokebattle.model.TypeItem
@@ -23,6 +26,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import kotlin.random.Random
+
 import kotlin.reflect.jvm.internal.impl.descriptors.deserialization.PlatformDependentDeclarationFilter
 
 class Lobby : Fragment(), HasList {
@@ -53,8 +57,9 @@ class Lobby : Fragment(), HasList {
                 if (firstPokemon == null)
                     nbSelected++
                 lobby_fragment_select_first_txt.text = selectedPokemon!!.name
-                DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_select_first_img))
-                    .execute(selectedPokemon!!.sprite);
+
+                Glide.with(this).load(selectedPokemon!!.sprite).into(lobby_fragment_select_first_img)
+
                 firstPokemon = selectedPokemon
                 if (nbSelected >= 3)
                 {
@@ -72,8 +77,8 @@ class Lobby : Fragment(), HasList {
                 if (secondPokemon == null)
                     nbSelected++
                 lobby_fragment_select_second_txt.text = selectedPokemon!!.name
-                DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_select_second_img))
-                    .execute(selectedPokemon!!.sprite);
+                Glide.with(this).load(selectedPokemon!!.sprite).into(lobby_fragment_select_second_img)
+
                 secondPokemon = selectedPokemon
                 if (nbSelected >= 3)
                 {
@@ -90,8 +95,8 @@ class Lobby : Fragment(), HasList {
                 if (thirdPokemon == null)
                     nbSelected++
                 lobby_fragment_select_third_txt.text = selectedPokemon!!.name
-                DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_select_third_img))
-                    .execute(selectedPokemon!!.sprite);
+                Glide.with(this).load(selectedPokemon!!.sprite).into(lobby_fragment_select_third_img)
+
                 thirdPokemon = selectedPokemon
                 if (nbSelected >= 3)
                 {
@@ -230,8 +235,7 @@ class Lobby : Fragment(), HasList {
         }
 
         lobby_fragment_opponent_name_txt.text = name
-        DownloadImageTask(activity!!.findViewById(R.id.lobby_fragment_opponent_img))
-            .execute(opponentPokemon.sprite);
+        Glide.with(this).load(opponentPokemon.sprite).into(lobby_fragment_opponent_img)
 
         lobby_fragment_opponent_first_attribute_img.setImageResource(getImageFromType(opponentPokemon.types[0].name))
         if (opponentPokemon.types.size > 1)

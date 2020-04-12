@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.epita.pokebattle.methods.*
 import com.epita.pokebattle.model.Move
 import com.epita.pokebattle.model.Move.PokemonMove
@@ -328,21 +329,18 @@ class Battle : Fragment() {
             //can't use Glide so..
             if (data.sprites.back_default != null)
             {
-                DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
-                    .execute(data.sprites.back_default);
+                Glide.with(this).load(data.sprites.back_default).into(battle_fragment_current_image_img)
             }
             else
             {
-                DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
-                    .execute(data.sprites.front_default);
+                Glide.with(this).load(data.sprites.front_default).into(battle_fragment_current_image_img)
             }
 
             battle_fragment_current_life_txt.text = "hp: " + getBaseStat(data, "hp").toString()
             battle_fragment_current_name_txt.text = data.name
             battle_fragment_current_type_img.setImageResource(getImageFromType(data.types[0].type.name))
 
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_pokemon_team_first_img))
-                .execute(data.sprites.front_default);
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_pokemon_team_first_img)
 
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_pokemon_team_first_img.setBackgroundColor(resources.getColor(R.color.background_lobby_select))
@@ -354,8 +352,8 @@ class Battle : Fragment() {
         else if (data.name == secondName && pokemons[1] == null) {
             pokemons[1] = data
 
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_pokemon_team_second_img))
-                .execute(data.sprites.front_default);
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_pokemon_team_second_img)
+
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_pokemon_team_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
 
@@ -365,8 +363,8 @@ class Battle : Fragment() {
         else if (data.name == thirdName && pokemons[2] == null) {
             pokemons[2] = data
 
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_pokemon_team_third_img))
-                .execute(data.sprites.front_default);
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_pokemon_team_third_img)
+
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_pokemon_team_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
 
@@ -376,15 +374,14 @@ class Battle : Fragment() {
         else if (data.name == firstOpponentName && opponents[0] == null) {
             opponents[0] = data
 
-            //can't use Glide so..
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_image_img))
-                .execute(data.sprites.front_default);
+
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_opponent_image_img)
+
             battle_fragment_opponent_life_txt.text = "hp: " + getBaseStat(data, "hp").toString()
             battle_fragment_opponent_name_txt.text = data.name
             battle_fragment_opponent_type_img.setImageResource(getImageFromType(data.types[0].type.name))
 
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_first_img))
-                .execute(data.sprites.front_default);
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_opponent_first_img)
 
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_opponent_first_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
@@ -395,8 +392,7 @@ class Battle : Fragment() {
         else if (data.name == secondOpponentName && opponents[1] == null) {
             opponents[1] = data
 
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_second_img))
-                .execute(data.sprites.front_default);
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_opponent_second_img)
 
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_opponent_second_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
@@ -406,8 +402,7 @@ class Battle : Fragment() {
         else if (data.name == thirdOpponentName && opponents[2] == null) {
             opponents[2] = data
 
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_third_img))
-                .execute(data.sprites.front_default);
+            Glide.with(this).load(data.sprites.front_default).into(battle_fragment_opponent_third_img)
 
             //deprecated since API 23 but we are using API 21 so we must use it
             battle_fragment_opponent_third_img.setBackgroundColor(resources.getColor(R.color.background_battle_unselected))
@@ -689,9 +684,9 @@ class Battle : Fragment() {
 
         currentOpponent++
 
-        //can't use Glide so..
-        DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_opponent_image_img))
-            .execute(opponents[currentOpponent]!!.sprites.front_default);
+
+        Glide.with(this).load(opponents[currentOpponent]!!.sprites.front_default).into(battle_fragment_opponent_image_img)
+
         battle_fragment_opponent_life_txt.text = "hp: " + getBaseStat(opponents[currentOpponent]!!, "hp").toString()
         battle_fragment_opponent_name_txt.text = opponents[currentOpponent]!!.name
         battle_fragment_opponent_type_img.setImageResource(getImageFromType(opponents[currentOpponent]!!.types[0].type.name))
@@ -743,13 +738,12 @@ class Battle : Fragment() {
         //can't use Glide so..
         if (pokemons[currentPokemon]!!.sprites.back_default != null)
         {
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
-                .execute(pokemons[currentPokemon]!!.sprites.back_default);
+            Glide.with(this).load(pokemons[currentPokemon]!!.sprites.back_default).into(battle_fragment_current_image_img)
         }
         else
         {
-            DownloadImageTask(activity!!.findViewById(R.id.battle_fragment_current_image_img))
-                .execute(pokemons[currentPokemon]!!.sprites.front_default);
+            Glide.with(this).load(pokemons[currentPokemon]!!.sprites.front_default).into(battle_fragment_current_image_img)
+
         }
 
         battle_fragment_current_life_txt.text = "hp: " + getBaseStat(pokemons[currentPokemon]!!, "hp").toString()

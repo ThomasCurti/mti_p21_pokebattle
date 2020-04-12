@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.epita.pokebattle.methods.DownloadImageTask
+import com.bumptech.glide.Glide
 import com.epita.pokebattle.methods.getBaseStat
 import com.epita.pokebattle.methods.getImageFromType
 import com.epita.pokebattle.model.Pokemon
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_detail_pokemon.*
+import kotlinx.android.synthetic.main.fragment_lobby.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,9 +67,10 @@ class DetailPokemon : Fragment() {
                     Log.w("WS", "WebService success : but no item found")
                     return
                 }
-                //can't use Glide so..
-                DownloadImageTask(activity!!.findViewById(R.id.detail_pokemon_fragment_img))
-                    .execute(responseData.sprites.front_default);
+
+                Glide.with(this@DetailPokemon).load(responseData.sprites.front_default).into(detail_pokemon_fragment_img)
+
+
 
                 detail_pokemon_fragment_name_txt.text = responseData.name
                 detail_pokemon_fragment_height_txt.text = responseData.height.toString()
