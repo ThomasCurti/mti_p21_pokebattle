@@ -58,8 +58,7 @@
         android:id="@+id/battle_fragment_attack_second_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/battle_fragment_attack_fourth_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/battle_fragment_attack_first_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -80,11 +79,10 @@
         android:id="@+id/battle_fragment_attack_fourth_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/view9"
+        app:layout_constraintBottom_toBottomOf="@+id/battle_fragment_attack_third_btn"
         app:layout_constraintEnd_toEndOf="@+id/battle_fragment_attack_second_btn"
         app:layout_constraintStart_toStartOf="@+id/battle_fragment_attack_second_btn"
-        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_second_btn" />
+        app:layout_constraintTop_toTopOf="@+id/battle_fragment_attack_third_btn" />
 
     <ImageView
         android:id="@+id/battle_fragment_current_image_img"
