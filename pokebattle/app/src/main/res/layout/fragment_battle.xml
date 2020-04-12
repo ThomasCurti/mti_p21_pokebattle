@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:scaleType="fitXY"
         android:src="@drawable/battle_background"
-        app:layout_constraintBottom_toTopOf="@+id/view8"
+        app:layout_constraintBottom_toBottomOf="@+id/battle_fragment_current_image_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,6 @@
         android:id="@+id/battle_fragment_attack_first_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view8" />
@@ -65,10 +64,12 @@
         android:id="@+id/battle_fragment_attack_third_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/battle_fragment_attack_first_btn"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/battle_fragment_attack_first_btn"
-        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_first_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_first_btn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/battle_fragment_attack_fourth_btn"
@@ -80,8 +81,8 @@
 
     <ImageView
         android:id="@+id/battle_fragment_current_image_img"
-        android:layout_width="@dimen/CurrentFighter"
-        android:layout_height="@dimen/CurrentFighter"
+        android:layout_width="123dp"
+        android:layout_height="117dp"
         android:layout_marginStart="64dp"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -100,12 +101,11 @@
         android:id="@+id/battle_fragment_current_life_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="@+id/battle_fragment_current_name_txt"
-        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_opponent_third_img" />
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_opponent_image_img" />
 
     <TextView
         android:id="@+id/battle_fragment_current_name_txt"
@@ -171,8 +171,8 @@
 
     <ImageView
         android:id="@+id/battle_fragment_pokemon_team_first_img"
-        android:layout_width="108dp"
-        android:layout_height="108dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
 
         app:layout_constraintEnd_toStartOf="@+id/battle_fragment_pokemon_team_second_img"
         app:layout_constraintStart_toStartOf="parent"
@@ -180,17 +180,16 @@
 
     <ImageView
         android:id="@+id/battle_fragment_pokemon_team_second_img"
-        android:layout_width="108dp"
-        android:layout_height="108dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/view9" />
+        app:layout_constraintStart_toStartOf="@+id/guideline5" />
 
     <ImageView
         android:id="@+id/battle_fragment_pokemon_team_third_img"
-        android:layout_width="108dp"
+        android:layout_width="100dp"
         android:layout_height="108dp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,9 +200,9 @@
         android:id="@+id/view8"
         android:layout_width="404dp"
         android:layout_height="1dp"
-        android:layout_marginTop="5dp"
         android:background="@color/separator_color"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/battle_fragment_current_image_img" />
 
@@ -211,12 +210,14 @@
         android:id="@+id/view9"
         android:layout_width="404dp"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="90dp"
         android:background="@color/separator_color"
+        app:layout_constraintBottom_toTopOf="@+id/battle_fragment_pokemon_team_second_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_third_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/view8"
+        app:layout_constraintVertical_bias="0.477" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
