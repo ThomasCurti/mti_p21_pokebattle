@@ -48,6 +48,8 @@
         android:id="@+id/battle_fragment_attack_first_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/battle_fragment_attack_third_btn"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view8" />
@@ -56,7 +58,10 @@
         android:id="@+id/battle_fragment_attack_second_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/battle_fragment_attack_fourth_btn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="@+id/battle_fragment_attack_first_btn" />
 
@@ -64,20 +69,22 @@
         android:id="@+id/battle_fragment_attack_third_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/battle_fragment_attack_first_btn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/battle_fragment_attack_first_btn"
-        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_first_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_first_btn" />
 
     <Button
         android:id="@+id/battle_fragment_attack_fourth_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/battle_fragment_attack_second_btn"
         app:layout_constraintStart_toStartOf="@+id/battle_fragment_attack_second_btn"
-        app:layout_constraintTop_toTopOf="@+id/battle_fragment_attack_third_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/battle_fragment_attack_second_btn" />
 
     <ImageView
         android:id="@+id/battle_fragment_current_image_img"
@@ -170,12 +177,13 @@
         app:layout_constraintTop_toTopOf="@+id/battle_fragment_opponent_first_img" />
 
     <ImageView
-        android:id="@+id/battle_fragment_pokemon_team_first_img"
+        android:id="@+id/battle_fragment_pokemon_team_third_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
 
-        app:layout_constraintEnd_toStartOf="@+id/battle_fragment_pokemon_team_second_img"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.345"
+        app:layout_constraintStart_toEndOf="@+id/battle_fragment_pokemon_team_second_img"
         app:layout_constraintTop_toTopOf="@+id/battle_fragment_pokemon_team_second_img" />
 
     <ImageView
@@ -185,15 +193,18 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline5" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
 
     <ImageView
-        android:id="@+id/battle_fragment_pokemon_team_third_img"
+        android:id="@+id/battle_fragment_pokemon_team_first_img"
         android:layout_width="100dp"
-        android:layout_height="108dp"
+        android:layout_height="100dp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/battle_fragment_pokemon_team_second_img"
+        app:layout_constraintEnd_toStartOf="@+id/battle_fragment_pokemon_team_second_img"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/battle_fragment_pokemon_team_second_img" />
 
     <View
@@ -217,7 +228,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view8"
-        app:layout_constraintVertical_bias="0.477" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
