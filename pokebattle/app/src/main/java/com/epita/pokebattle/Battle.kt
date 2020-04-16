@@ -507,7 +507,7 @@ class Battle : Fragment() {
                     }
 
                 }
-            }, 1000)
+            }, 2000)
         }
         else
         {
@@ -592,6 +592,7 @@ class Battle : Fragment() {
     fun forceChangePokemon()
     {
         canAttack = false
+        mustWait = false
         if (currentPokemon == 0)
             battle_fragment_pokemon_team_first_img.setBackgroundColor(resources.getColor(R.color.background_battle_dead))
         if (currentPokemon == 1)
@@ -834,12 +835,19 @@ class Battle : Fragment() {
 
     fun onChangePokemonClick(nb: Int)
     {
+        if (mustWait)
+            return
+
         if (changePokemon(nb))
         {
             mustWait = true
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                mustWait = false
+            }, 4000)
+
             canAttack = true
 
-            val handler = Handler()
             handler.postDelayed(Runnable {
                 try {
                     AIAttack()
@@ -849,7 +857,7 @@ class Battle : Fragment() {
                     //should never happen except if the player press the back button during a pokemon change
                 }
 
-            }, 1500)
+            }, 1000)
         }
     }
 
