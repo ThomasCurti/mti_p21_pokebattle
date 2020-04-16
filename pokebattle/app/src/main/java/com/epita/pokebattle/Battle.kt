@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.epita.pokebattle.methods.*
 import com.epita.pokebattle.model.Move
 import com.epita.pokebattle.model.Move.PokemonMove
+import com.epita.pokebattle.model.Moves
 import com.epita.pokebattle.model.Pokemon
 import com.epita.pokebattle.model.Types
 import com.google.gson.GsonBuilder
@@ -353,12 +354,10 @@ class Battle : Fragment() {
             }
         }
 
+        var list: MutableList<Moves> = data.moves.toMutableList()
+        list.shuffle()
 
-
-
-
-        //TODO random choose
-        for (move in data.moves) {
+        for (move in list) {
             val moveSplit = move.move.url.split("/")
             val id = moveSplit[moveSplit.size - 2]
             service.getMove(id).enqueue(wsCallbackGetMove)
@@ -490,12 +489,17 @@ class Battle : Fragment() {
             handler.postDelayed(Runnable {
                 if (checkEnd() == 1)
                 {
-                    battle_fragment_win_loose_txt.text = "You Win !"
+                    try {
+                        battle_fragment_win_loose_txt.text = "You Win !"
 
-                    val handler =  Handler()
-                    handler.postDelayed({
-                        (activity as BattleInteractions).goBackToLobby()
-                    }, 2000)
+                        val handler =  Handler()
+                        handler.postDelayed({
+                            (activity as BattleInteractions).goBackToLobby()
+                        }, 2000)
+                    }
+                    catch (e: Exception) {
+                        //should never happend except if the player press the back button after an attack
+                    }
                 }
                 else
                 {
@@ -545,12 +549,17 @@ class Battle : Fragment() {
             handler.postDelayed(Runnable {
                 if (checkEnd() == -1)
                 {
-                    battle_fragment_win_loose_txt.text = "You Loose !"
+                    try {
+                        battle_fragment_win_loose_txt.text = "You Loose !"
 
-                    val handler =  Handler()
-                    handler.postDelayed({
-                        (activity as BattleInteractions).goBackToLobby()
-                    }, 2000)
+                        val handler =  Handler()
+                        handler.postDelayed({
+                            (activity as BattleInteractions).goBackToLobby()
+                        }, 2000)
+                    }
+                    catch (e: Exception) {
+                        //should never happend except if the player press the back button after an enemy attack
+                    }
                 }
                 else
                 {
