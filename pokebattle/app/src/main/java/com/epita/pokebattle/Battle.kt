@@ -119,30 +119,15 @@ class Battle : Fragment() {
         }
 
         battle_fragment_pokemon_team_first_img.setOnClickListener {
-            if (changePokemon(0))
-            {
-                mustWait = true
-                canAttack = true
-                AIAttack()
-            }
+            onChangePokemonClick(0)
         }
 
         battle_fragment_pokemon_team_second_img.setOnClickListener {
-            if (changePokemon(1))
-            {
-                mustWait = true
-                canAttack = true
-                AIAttack()
-            }
+            onChangePokemonClick(1)
         }
 
         battle_fragment_pokemon_team_third_img.setOnClickListener {
-            if (changePokemon(2))
-            {
-                mustWait = true
-                canAttack = true
-                AIAttack()
-            }
+            onChangePokemonClick(2)
         }
 
     }
@@ -820,6 +805,16 @@ class Battle : Fragment() {
             {
                 AIAttack()
             }
+        }
+    }
+
+    fun onChangePokemonClick(nb: Int)
+    {
+        if (changePokemon(nb))
+        {
+            mustWait = true
+            canAttack = true
+            AIAttack()
         }
     }
 
