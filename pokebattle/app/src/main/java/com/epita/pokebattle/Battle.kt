@@ -490,8 +490,12 @@ class Battle : Fragment() {
             handler.postDelayed(Runnable {
                 if (checkEnd() == 1)
                 {
-                    //TODO Show WIN blabla
-                    (activity as BattleInteractions).goBackToLobby()
+                    battle_fragment_win_loose_txt.text = "You Win !"
+
+                    val handler =  Handler()
+                    handler.postDelayed({
+                        (activity as BattleInteractions).goBackToLobby()
+                    }, 2000)
                 }
                 else
                 {
@@ -503,7 +507,7 @@ class Battle : Fragment() {
                     }
 
                 }
-            }, 2000)
+            }, 1000)
         }
         else
         {
@@ -541,8 +545,12 @@ class Battle : Fragment() {
             handler.postDelayed(Runnable {
                 if (checkEnd() == -1)
                 {
-                    //TODO Show Loose blabla
-                    (activity as BattleInteractions).goBackToLobby()
+                    battle_fragment_win_loose_txt.text = "You Loose !"
+
+                    val handler =  Handler()
+                    handler.postDelayed({
+                        (activity as BattleInteractions).goBackToLobby()
+                    }, 2000)
                 }
                 else
                 {
