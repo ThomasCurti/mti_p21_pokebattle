@@ -103,112 +103,19 @@ class Battle : Fragment() {
          * Add logic
          * */
         battle_fragment_attack_first_btn.setOnClickListener {
-            if (!canAttack)
-                Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
-
-            if (!mustWait && pokemonsAttack[currentPokemon]!!.moves.size > 0)
-            {
-                mustWait = true
-                val isFirst = isCurrentFirst()
-                if (!isFirst)
-                {
-                    AIAttack()
-                }
-                val damage = getDamageTo(
-                    0,
-                    pokemonsAttack[currentPokemon]!!,
-                    pokemons[currentPokemon]!!,
-                    opponents[currentOpponent]!!
-                )
-                attackEnemy(damage, pokemonsAttack[currentPokemon]!!.moves[0].accuracy, pokemonsAttack[currentPokemon]!!.moves[0].name)
-                if (isFirst)
-                {
-                    AIAttack()
-                }
-            }
+            onAttackClick(0)
         }
 
         battle_fragment_attack_second_btn.setOnClickListener {
-            if (!canAttack)
-                Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
-
-            if (!mustWait && pokemonsAttack[currentPokemon]!!.moves.size > 1)
-            {
-                mustWait = true
-                val isFirst = isCurrentFirst()
-                if (!isFirst)
-                {
-                    AIAttack()
-                }
-                val damage = getDamageTo(
-                    1,
-                    pokemonsAttack[currentPokemon]!!,
-                    pokemons[currentPokemon]!!,
-                    opponents[currentOpponent]!!
-                )
-                attackEnemy(damage, pokemonsAttack[currentPokemon]!!.moves[1].accuracy, pokemonsAttack[currentPokemon]!!.moves[1].name)
-                if (isFirst)
-                {
-                    AIAttack()
-                }
-            }
+            onAttackClick(1)
         }
 
         battle_fragment_attack_third_btn.setOnClickListener {
-            if (!canAttack)
-                Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
-
-            if (!mustWait && canAttack && pokemonsAttack[currentPokemon]!!.moves.size > 2)
-            {
-                mustWait = true
-                val isFirst = isCurrentFirst()
-                if (!isFirst)
-                {
-                    AIAttack()
-                }
-                val damage = getDamageTo(
-                    2,
-                    pokemonsAttack[currentPokemon]!!,
-                    pokemons[currentPokemon]!!,
-                    opponents[currentOpponent]!!
-                )
-                attackEnemy(damage, pokemonsAttack[currentPokemon]!!.moves[2].accuracy, pokemonsAttack[currentPokemon]!!.moves[2].name)
-                if (isFirst)
-                {
-                    AIAttack()
-                }
-            }
+            onAttackClick(2)
         }
 
         battle_fragment_attack_fourth_btn.setOnClickListener {
-            if (!canAttack)
-                Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
-
-            if (!mustWait && pokemonsAttack[currentPokemon]!!.moves.size > 3)
-            {
-                mustWait = true
-
-                val isFirst = isCurrentFirst()
-                if (!isFirst)
-                {
-                    AIAttack()
-                }
-                val damage = getDamageTo(
-                    3,
-                    pokemonsAttack[currentPokemon]!!,
-                    pokemons[currentPokemon]!!,
-                    opponents[currentOpponent]!!
-                )
-                attackEnemy(
-                    damage,
-                    pokemonsAttack[currentPokemon]!!.moves[3].accuracy,
-                    pokemonsAttack[currentPokemon]!!.moves[3].name
-                )
-                if (isFirst)
-                {
-                    AIAttack()
-                }
-            }
+            onAttackClick(3)
         }
 
         battle_fragment_pokemon_team_first_img.setOnClickListener {
@@ -244,8 +151,15 @@ class Battle : Fragment() {
      * */
     val wsCallbackGetPokemon: Callback<Pokemon> = object : Callback<Pokemon> {
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
-                Log.e("WSPokemon", " WebService call failed " + t.message)
+                try
+                {
+                    Toast.makeText(context, "Error, check your internet connection", Toast.LENGTH_LONG).show()
+                    Log.e("WSPokemon", " WebService call failed " + t.message)
+                }
+                catch (e: Exception)
+                {
+
+                }
             }
 
             override fun onResponse(call: Call<Pokemon>, response:
@@ -457,6 +371,10 @@ class Battle : Fragment() {
             }
         }
 
+
+
+
+
         //TODO random choose
         for (move in data.moves) {
             val moveSplit = move.move.url.split("/")
@@ -465,27 +383,21 @@ class Battle : Fragment() {
         }
     }
 
-    fun checkMoves(data: Pokemon): Boolean
+    fun checkMoves(data: Pokemon, nb: Int): Boolean
     {
-        val test = (pokemonsAttack[0] != null && data.name == pokemonsAttack[0]!!.name && pokemonsAttack[0]!!.moves.size >= 4) ||
-                (pokemonsAttack[1] != null && data.name == pokemonsAttack[1]!!.name && pokemonsAttack[1]!!.moves.size >= 4) ||
-                (pokemonsAttack[2] != null && data.name == pokemonsAttack[2]!!.name && pokemonsAttack[2]!!.moves.size >= 4) ||
-                (opponentsAttacks[0] != null && data.name == opponentsAttacks[0]!!.name && opponentsAttacks[0]!!.moves.size >= 4) ||
-                (opponentsAttacks[1] != null && data.name == opponentsAttacks[1]!!.name && opponentsAttacks[1]!!.moves.size >= 4) ||
-                (opponentsAttacks[2] != null && data.name == opponentsAttacks[2]!!.name && opponentsAttacks[2]!!.moves.size >= 4)
+        val test = (nb == 1 && pokemonsAttack[0] != null && data.name == pokemonsAttack[0]!!.name && pokemonsAttack[0]!!.moves.size >= 4) ||
+                (nb == 2 && pokemonsAttack[1] != null && data.name == pokemonsAttack[1]!!.name && pokemonsAttack[1]!!.moves.size >= 4) ||
+                (nb == 3 && pokemonsAttack[2] != null && data.name == pokemonsAttack[2]!!.name && pokemonsAttack[2]!!.moves.size >= 4) ||
+                (nb == 4 && opponentsAttacks[0] != null && data.name == opponentsAttacks[0]!!.name && opponentsAttacks[0]!!.moves.size >= 4) ||
+                (nb == 5 && opponentsAttacks[1] != null && data.name == opponentsAttacks[1]!!.name && opponentsAttacks[1]!!.moves.size >= 4) ||
+                (nb == 6 && opponentsAttacks[2] != null && data.name == opponentsAttacks[2]!!.name && opponentsAttacks[2]!!.moves.size >= 4)
         return test
     }
 
     fun fillAttacks(move: Move, name: String, nb: Int)
     {
         if (pokemons[0] != null && name == pokemons[0]!!.name && nb == 1) {
-            if (checkMoves(pokemons[0]!!))
-            {
-                return
-            }
-            if(pokemonsAttack[0] == null)
-                pokemonsAttack[0] = PokemonMove(pokemons[0]!!.name, mutableListOf())
-            pokemonsAttack[0]!!.moves.add(move)
+            addAttackPokemons(0, move, nb)
 
             if (pokemonsAttack[0]!!.moves.size > 0)
                 battle_fragment_attack_first_btn.text = pokemonsAttack[0]!!.moves[0].name
@@ -498,53 +410,44 @@ class Battle : Fragment() {
 
 
         } else if (pokemons[1] != null && name == pokemons[1]!!.name && nb == 2) {
-            if (checkMoves(pokemons[1]!!))
-            {
-                return
-            }
-            if(pokemonsAttack[1] == null)
-                pokemonsAttack[1] = PokemonMove(pokemons[1]!!.name, mutableListOf())
-            pokemonsAttack[1]!!.moves.add(move)
+            addAttackPokemons(1, move, nb)
 
         } else if (pokemons[2] != null && name == pokemons[2]!!.name && nb == 3) {
-            if (checkMoves(pokemons[2]!!))
-            {
-                return
-            }
-            if(pokemonsAttack[2] == null)
-                pokemonsAttack[2] = PokemonMove(pokemons[2]!!.name, mutableListOf())
-            pokemonsAttack[2]!!.moves.add(move)
+            addAttackPokemons(2, move, nb)
 
         } else if (opponents[0] != null && name == opponents[0]!!.name && nb == 4) {
-            if (checkMoves(opponents[0]!!))
-            {
-                return
-            }
-            if(opponentsAttacks[0] == null)
-                opponentsAttacks[0] = PokemonMove(opponents[0]!!.name, mutableListOf())
-            opponentsAttacks[0]!!.moves.add(move)
+            addAttackOpponent(0, move, nb)
 
         } else if (opponents[1] != null && name == opponents[1]!!.name && nb == 5) {
-            if (checkMoves(opponents[1]!!))
-            {
-                return
-            }
-            if(opponentsAttacks[1] == null)
-                opponentsAttacks[1] = PokemonMove(opponents[1]!!.name, mutableListOf())
-            opponentsAttacks[1]!!.moves.add(move)
+            addAttackOpponent(1, move, nb)
 
         } else if (opponents[2] != null && name == opponents[2]!!.name && nb == 6) {
-            if (checkMoves(opponents[2]!!))
-            {
-                return
-            }
-            if(opponentsAttacks[2] == null)
-                opponentsAttacks[2] = PokemonMove(opponents[2]!!.name, mutableListOf())
-            opponentsAttacks[2]!!.moves.add(move)
+            addAttackOpponent(2, move, nb)
 
         }
     }
 
+    fun addAttackPokemons(nbAttack: Int, move: Move, nbId: Int)
+    {
+        if (checkMoves(pokemons[nbAttack]!!, nbId)) {
+            return
+        }
+        if (pokemonsAttack[nbAttack] == null) {
+            pokemonsAttack[nbAttack] = PokemonMove(pokemons[nbAttack]!!.name, mutableListOf())
+        }
+        pokemonsAttack[nbAttack]!!.moves.add(move)
+    }
+
+    fun addAttackOpponent(nbAttack: Int, move: Move, nbId: Int)
+    {
+        if (checkMoves(opponents[nbAttack]!!, nbId))
+        {
+            return
+        }
+        if(opponentsAttacks[nbAttack] == null)
+            opponentsAttacks[nbAttack] = PokemonMove(opponents[nbAttack]!!.name, mutableListOf())
+        opponentsAttacks[nbAttack]!!.moves.add(move)
+    }
 
     /*
     * Add logic
@@ -661,6 +564,8 @@ class Battle : Fragment() {
                 if (checkEnd() == -1)
                 {
                     //TODO Show Loose blabla
+                    Log.wtf("TAG", "here")
+
                     (activity as BattleInteractions).goBackToLobby()
                 }
                 else
@@ -849,6 +754,73 @@ class Battle : Fragment() {
         }
 
         attackTeam(maxAttack, opponentsAttacks[currentOpponent]!!.moves[maxIndex].accuracy, opponentsAttacks[currentOpponent]!!.moves[maxIndex].name)
+    }
+
+    fun IsGameLoaded(): Boolean
+    {
+        for (pokemon in pokemons)
+        {
+            if (pokemon == null)
+                return false
+        }
+
+        for (opponent in opponents)
+        {
+            if (opponent == null)
+                return false
+        }
+
+        for (attack in pokemonsAttack)
+        {
+            if (attack == null)
+                return false
+        }
+
+        for (attack in opponentsAttacks)
+        {
+            if (attack == null)
+                return false
+        }
+
+        return true
+    }
+
+    fun onAttackClick(buttonNb: Int)
+    {
+        if (!IsGameLoaded())
+        {
+            return
+        }
+
+        if (!canAttack)
+        {
+            Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (!mustWait && pokemonsAttack[currentPokemon]!!.moves.size > buttonNb)
+        {
+            mustWait = true
+            val isFirst = isCurrentFirst()
+            if (!isFirst)
+            {
+                AIAttack()
+            }
+            val damage = getDamageTo(
+                buttonNb,
+                pokemonsAttack[currentPokemon]!!,
+                pokemons[currentPokemon]!!,
+                opponents[currentOpponent]!!
+            )
+            attackEnemy(
+                damage, pokemonsAttack[currentPokemon]!!.moves[buttonNb].accuracy,
+                pokemonsAttack[currentPokemon]!!.moves[buttonNb].name
+            )
+            if (isFirst)
+            {
+                AIAttack()
+            }
+        }
     }
 
     interface BattleInteractions
