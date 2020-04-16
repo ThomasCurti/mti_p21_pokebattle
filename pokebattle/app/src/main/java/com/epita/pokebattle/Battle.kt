@@ -495,7 +495,13 @@ class Battle : Fragment() {
                 }
                 else
                 {
-                    changeEnemyPokemon()
+                    try {
+                        changeEnemyPokemon()
+                    }
+                    catch (e: Exception) {
+                        //should never happend except if the player press the back button after an attack
+                    }
+
                 }
             }, 2000)
         }
@@ -540,7 +546,12 @@ class Battle : Fragment() {
                 }
                 else
                 {
-                    forceChangePokemon()
+                    try {
+                        forceChangePokemon()
+                    }
+                    catch (e: Exception) {
+                        //should never happend except if the player press the back button after an enemy attack
+                    }
                 }
             }, 2000)
         }
@@ -767,36 +778,48 @@ class Battle : Fragment() {
 
         if (!canAttack)
         {
-            Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
+            try {
+                Toast.makeText(context, "You can't attack!", Toast.LENGTH_SHORT).show()
+            }
+            catch (e: Exception)
+            {
+                //should never happen except if the player press the back button during an attack
+            }
             return
         }
 
         if (!mustWait && pokemonsAttack[currentPokemon]!!.moves.size > buttonNb)
         {
-            val handler = Handler()
-            handler.postDelayed(Runnable {
-                mustWait = false
-            }, 5000)
+            try {
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    mustWait = false
+                }, 5000)
 
-            mustWait = true
-            val isFirst = isCurrentFirst()
-            if (!isFirst)
-            {
-                AIAttack()
+                mustWait = true
+                val isFirst = isCurrentFirst()
+                if (!isFirst)
+                {
+                    AIAttack()
+                }
+                val damage = getDamageTo(
+                    buttonNb,
+                    pokemonsAttack[currentPokemon]!!,
+                    pokemons[currentPokemon]!!,
+                    opponents[currentOpponent]!!
+                )
+                attackEnemy(
+                    damage, pokemonsAttack[currentPokemon]!!.moves[buttonNb].accuracy,
+                    pokemonsAttack[currentPokemon]!!.moves[buttonNb].name
+                )
+                if (isFirst)
+                {
+                    AIAttack()
+                }
             }
-            val damage = getDamageTo(
-                buttonNb,
-                pokemonsAttack[currentPokemon]!!,
-                pokemons[currentPokemon]!!,
-                opponents[currentOpponent]!!
-            )
-            attackEnemy(
-                damage, pokemonsAttack[currentPokemon]!!.moves[buttonNb].accuracy,
-                pokemonsAttack[currentPokemon]!!.moves[buttonNb].name
-            )
-            if (isFirst)
+            catch (e: Exception)
             {
-                AIAttack()
+                //should never happen except if the player press the back button during an attack
             }
         }
     }
@@ -810,7 +833,14 @@ class Battle : Fragment() {
 
             val handler = Handler()
             handler.postDelayed(Runnable {
-                AIAttack()
+                try {
+                    AIAttack()
+                }
+                catch (e: Exception)
+                {
+                    //should never happen except if the player press the back button during a pokemon change
+                }
+
             }, 1500)
         }
     }
