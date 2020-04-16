@@ -57,9 +57,6 @@ class Battle : Fragment() {
 
     var mustWait: Boolean = false
 
-
-//TODO spammer les boutons avant le chargement pour voir
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
