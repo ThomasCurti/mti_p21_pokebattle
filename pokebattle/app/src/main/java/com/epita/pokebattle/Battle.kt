@@ -465,11 +465,6 @@ class Battle : Fragment() {
 
     fun attackEnemy(damage: Int, accuracy: Int, attackName: String)
     {
-        val handler = Handler()
-        handler.postDelayed(Runnable {
-            mustWait = false
-        }, 4000)
-
         if (getBaseStat(pokemons[currentPokemon]!!, "hp") <= 0)
         {
             return
@@ -515,11 +510,6 @@ class Battle : Fragment() {
 
     fun attackTeam(damage: Int, accuracy: Int, attackName: String)
     {
-        val handler = Handler()
-        handler.postDelayed(Runnable {
-            mustWait = false
-        }, 4000)
-
         if (getBaseStat(opponents[currentOpponent]!!, "hp") <= 0)
         {
             return
@@ -549,8 +539,6 @@ class Battle : Fragment() {
                 if (checkEnd() == -1)
                 {
                     //TODO Show Loose blabla
-                    Log.wtf("TAG", "here")
-
                     (activity as BattleInteractions).goBackToLobby()
                 }
                 else
@@ -628,7 +616,6 @@ class Battle : Fragment() {
             battle_fragment_pokemon_team_third_img.setBackgroundColor(resources.getColor(R.color.background_lobby_select))
 
 
-        //can't use Glide so..
         if (pokemons[currentPokemon]!!.sprites.back_default != null)
         {
             Glide.with(this).load(pokemons[currentPokemon]!!.sprites.back_default).into(battle_fragment_current_image_img)
@@ -738,7 +725,11 @@ class Battle : Fragment() {
             index++
         }
 
-        attackTeam(maxAttack, opponentsAttacks[currentOpponent]!!.moves[maxIndex].accuracy, opponentsAttacks[currentOpponent]!!.moves[maxIndex].name)
+        attackTeam(
+            maxAttack,
+            opponentsAttacks[currentOpponent]!!.moves[maxIndex].accuracy,
+            opponentsAttacks[currentOpponent]!!.moves[maxIndex].name
+        )
     }
 
     fun IsGameLoaded(): Boolean
@@ -785,6 +776,11 @@ class Battle : Fragment() {
 
         if (!mustWait && pokemonsAttack[currentPokemon]!!.moves.size > buttonNb)
         {
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                mustWait = false
+            }, 5000)
+
             mustWait = true
             val isFirst = isCurrentFirst()
             if (!isFirst)
@@ -814,7 +810,11 @@ class Battle : Fragment() {
         {
             mustWait = true
             canAttack = true
-            AIAttack()
+
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                AIAttack()
+            }, 1500)
         }
     }
 
