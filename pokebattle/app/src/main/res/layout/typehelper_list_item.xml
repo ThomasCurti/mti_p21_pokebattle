@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/typehelper_list_item_type1"
+        android:layout_width="44sp"
+        android:layout_height="44sp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/typehelper_list_item_type2" />
+
+    <ImageView
+        android:id="@+id/typehelper_list_item_type2"
+        android:layout_width="44sp"
+        android:layout_height="44sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/typehelper_list_item_type1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/typehelper_list_item_type3"
+        android:layout_width="44sp"
+        android:layout_height="44sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/typehelper_list_item_type2"
+        app:layout_constraintTop_toTopOf="@+id/typehelper_list_item_type2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

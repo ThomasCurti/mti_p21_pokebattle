@@ -26,6 +26,7 @@ class Adapter(
         val secondAttribute : ImageView = itemView.findViewById(secAttr)
     }
 
+    //must override to resolve graphical bugs
     override fun getItemViewType(position: Int): Int {
         return position
     }

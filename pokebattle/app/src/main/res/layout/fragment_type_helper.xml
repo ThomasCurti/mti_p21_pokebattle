@@ -8,411 +8,6 @@
     tools:context=".TypeHelper">
 
     <ImageView
-        android:id="@+id/typehelper_fragment_half_from_8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_half_from_7"
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_half_from_9"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_half_from_7"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_from_7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_half_from_1"
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_half_from_3"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_half_from_1"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_from_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_half_from_2"
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_from_2" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_from_5" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_half_from_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_half_from_4"
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_half_from_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_half_from_4"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_from_4"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_half_from_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_from_9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_half_from_8"
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_from_8" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_to_2" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_normal_to_9"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normal_to_7"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_to_7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_normal_to_3"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normal_to_1"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_to_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_normal_to_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_normal_to_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normal_to_4"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_to_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_normal_to_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/view7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_to_8" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_to_6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_to_5" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_double_to_3"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_double_to_1"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_to_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_double_to_9"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_double_to_7"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_to_7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_to_5" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_double_to_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_double_to_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_double_to_4"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_to_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_double_to_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_to_8" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_to_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_to_2" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_to_2" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_half_to_9"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_half_to_7"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_to_7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_half_to_3"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_half_to_1"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_to_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_half_to_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_half_to_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_half_to_4"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_to_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_half_to_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_to_8" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_half_to_6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_half_to_5" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_double_from_7"
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_double_from_9"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_double_from_7"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_from_7"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_double_from_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_double_from_8"
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_from_8"
-        app:layout_constraintVertical_bias="0.076" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_double_from_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_double_from_2"
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_from_2"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_double_from_4"
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_double_from_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_double_from_4"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_from_4" />
-
-    <ImageView
         android:id="@+id/typehelper_fragment_type_img"
         android:layout_width="110dp"
         android:layout_height="110dp"
@@ -436,23 +31,23 @@
         android:id="@+id/view6"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
         android:background="@color/separator_color"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_double_from_8" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <View
         android:id="@+id/view7"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
         android:background="@color/separator_color"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_half_from_9" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <View
         android:id="@+id/view5"
@@ -492,120 +87,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.09" />
 
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_from_2" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_normal_from_9"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normal_from_7"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_from_7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_normal_from_3"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normal_from_1"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_from_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_from_5" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_normal_from_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_normal_from_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/view7" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_from_8" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_normal_from_5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_normal_from_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normal_from_4"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_normal_from_4" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_double_from_1"
-        app:layout_constraintEnd_toStartOf="@+id/typehelper_fragment_double_from_6"
-        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_double_from_1"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_from_1" />
-
-    <ImageView
-        android:id="@+id/typehelper_fragment_double_from_6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_double_from_5"
-        app:layout_constraintEnd_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/typehelper_fragment_double_from_5" />
-
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
@@ -631,9 +112,76 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/typehelper_normal"
-        app:layout_constraintBottom_toBottomOf="@+id/typehelper_fragment_normal_from_7"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typehelper_fragment_doublefrom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view6"
+        app:layout_constraintEnd_toStartOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.44" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.72" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typehelper_fragment_halffrom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view7"
+        app:layout_constraintEnd_toStartOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/typehelper_fragment_doublefrom" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typehelper_fragment_normalfrom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/typehelper_fragment_halffrom"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typehelper_fragment_doubleto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_doublefrom"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typehelper_fragment_halfto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_halffrom"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/typehelper_fragment_normalto"
+        android:layout_width="183dp"
+        android:layout_height="202dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/typehelper_fragment_normalfrom"
         app:layout_constraintTop_toBottomOf="@+id/view7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

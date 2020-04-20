@@ -9,10 +9,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.epita.pokebattle.methods.fixDataType
 import com.epita.pokebattle.methods.getImageFromType
 import com.epita.pokebattle.model.TypeUrlName
 import com.epita.pokebattle.model.Types
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.fragment_pokedex.*
 import kotlinx.android.synthetic.main.fragment_type_helper.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,88 +35,8 @@ class TypeHelper : Fragment() {
         return inflater.inflate(R.layout.fragment_type_helper, container, false)
     }
 
-    var doubleFrom: List<ImageView> = listOf()
-    var doubleTo: List<ImageView> = listOf()
-    var halfFrom: List<ImageView> = listOf()
-    var halfTo: List<ImageView> = listOf()
-    var normalFrom: List<ImageView> = listOf()
-    var normalTo: List<ImageView> = listOf()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        doubleFrom = kotlin.collections.listOf<ImageView> (
-            typehelper_fragment_double_from_1,
-            typehelper_fragment_double_from_2,
-            typehelper_fragment_double_from_3,
-            typehelper_fragment_double_from_4,
-            typehelper_fragment_double_from_5,
-            typehelper_fragment_double_from_6,
-            typehelper_fragment_double_from_7,
-            typehelper_fragment_double_from_8,
-            typehelper_fragment_double_from_9
-        )
-
-        doubleTo = kotlin.collections.listOf<ImageView> (
-            typehelper_fragment_double_to_1,
-            typehelper_fragment_double_to_2,
-            typehelper_fragment_double_to_3,
-            typehelper_fragment_double_to_4,
-            typehelper_fragment_double_to_5,
-            typehelper_fragment_double_to_6,
-            typehelper_fragment_double_to_7,
-            typehelper_fragment_double_to_8,
-            typehelper_fragment_double_to_9
-        )
-
-        halfFrom = kotlin.collections.listOf<ImageView> (
-            typehelper_fragment_half_from_1,
-            typehelper_fragment_half_from_2,
-            typehelper_fragment_half_from_3,
-            typehelper_fragment_half_from_4,
-            typehelper_fragment_half_from_5,
-            typehelper_fragment_half_from_6,
-            typehelper_fragment_half_from_7,
-            typehelper_fragment_half_from_8,
-            typehelper_fragment_half_from_9
-        )
-
-        halfTo = kotlin.collections.listOf<ImageView> (
-            typehelper_fragment_half_to_1,
-            typehelper_fragment_half_to_2,
-            typehelper_fragment_half_to_3,
-            typehelper_fragment_half_to_4,
-            typehelper_fragment_half_to_5,
-            typehelper_fragment_half_to_6,
-            typehelper_fragment_half_to_7,
-            typehelper_fragment_half_to_8,
-            typehelper_fragment_half_to_9
-        )
-
-        normalFrom = kotlin.collections.listOf<ImageView> (
-            typehelper_fragment_normal_from_1,
-            typehelper_fragment_normal_from_2,
-            typehelper_fragment_normal_from_3,
-            typehelper_fragment_normal_from_4,
-            typehelper_fragment_normal_from_5,
-            typehelper_fragment_normal_from_6,
-            typehelper_fragment_normal_from_7,
-            typehelper_fragment_normal_from_8,
-            typehelper_fragment_normal_from_9
-        )
-
-        normalTo = kotlin.collections.listOf<ImageView> (
-            typehelper_fragment_normal_to_1,
-            typehelper_fragment_normal_to_2,
-            typehelper_fragment_normal_to_3,
-            typehelper_fragment_normal_to_4,
-            typehelper_fragment_normal_to_5,
-            typehelper_fragment_normal_to_6,
-            typehelper_fragment_normal_to_7,
-            typehelper_fragment_normal_to_8,
-            typehelper_fragment_normal_to_9
-        )
-
 
         val id = arguments!!["id"].toString().toInt()
         val name = arguments!!["name"].toString()
@@ -149,12 +73,12 @@ class TypeHelper : Fragment() {
                     return
                 }
 
-                FillTypes(responseData.damage_relations.double_damage_from, doubleFrom)
-                FillTypes(responseData.damage_relations.double_damage_to, doubleTo)
-                FillTypes(responseData.damage_relations.half_damage_from, halfFrom)
-                FillTypes(responseData.damage_relations.half_damage_to, halfTo)
-                FillTypes(responseData.damage_relations.no_damage_from, normalFrom)
-                FillTypes(responseData.damage_relations.no_damage_to, normalTo)
+                FillTypes(fixDataType(responseData.damage_relations.double_damage_from), typehelper_fragment_doublefrom)
+                FillTypes(fixDataType(responseData.damage_relations.double_damage_to), typehelper_fragment_doubleto)
+                FillTypes(fixDataType(responseData.damage_relations.half_damage_from), typehelper_fragment_halffrom)
+                FillTypes(fixDataType(responseData.damage_relations.half_damage_to), typehelper_fragment_halfto)
+                FillTypes(fixDataType(responseData.damage_relations.no_damage_from), typehelper_fragment_normalfrom)
+                FillTypes(fixDataType(responseData.damage_relations.no_damage_to), typehelper_fragment_normalto)
 
             }
             else
@@ -166,17 +90,14 @@ class TypeHelper : Fragment() {
         }
     }
 
-    fun FillTypes(list: List<TypeUrlName>, array: List<ImageView>)
+    fun FillTypes(list: List<Array<TypeUrlName>>, recyclerView: RecyclerView)
     {
-        for ((index, type) in list.withIndex())
-        {
-            if (index >= 9)
-            {
-                Log.e("TYPE", "TOO MUCH TYPES: " + list.toString() + "\n" + typehelper_fragment_type_img.drawable.toString())
-                break;
-            }
-            array[index].setImageResource(getImageFromType(type.name))
-        }
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = TypeHelperAdapter(
+            list,
+            activity!!
+            )
     }
 
 
